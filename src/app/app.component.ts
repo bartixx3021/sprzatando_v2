@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sprzatando';
+
+  TestFetch() {
+    fetch("http://localhost:8080").then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+    })
+  }
 }
