@@ -44,10 +44,11 @@ http.createServer( (req, res) => {
                 case "register":
                     break;
                 case "get":
-                    let u = "SELECT * FROM userus WHERE email = 'adolf@mail.pl'";
+                    let objx = JSON.parse(url.searchParams.get("parametry"));
+                    let u = `SELECT * FROM userus WHERE email = '${objx.mail}' AND pass = '${objx.pass}'`;
                     connection.query(u, function (error, results, fields) {
                         if (error) throw error;
-                        res.end(JSON.stringify({type: "user select", comment: "successful", result: results[0]}));
+                        res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
                         connection.end();
                       });
                       break;

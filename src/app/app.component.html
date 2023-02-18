@@ -4,3 +4,11 @@
 <input type="password" [(ngModel)]="pass">
 <button (click)="TestAdd()">Click</button>
 <HR>
+<div *ngIf="log == false">
+  <h2>Log in</h2>
+  <input type="email" [(ngModel)]="log_mail"><input type="password" [(ngModel)]="log_pass">
+  <button (click)="Login()">Log in</button>
+</div>
+<div *ngIf="log">
+  <h2>loggen in</h2>
+</div>
