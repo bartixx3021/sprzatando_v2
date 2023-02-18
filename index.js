@@ -17,7 +17,20 @@ http.createServer( (req, res) => {
     switch (action) {
         case "offer":
             let subact = url.searchParams.get("subact");
-            res.end(JSON.stringify({type: "offer"}));
+            switch (subact) {
+                case "add":
+                    let obj = JSON.parse(url.searchParams.get("parametry"));
+                    let t = new Date();
+                    console.log(t.toString().split("T")[0]);
+                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '${t.toString().split("T")[0]}', '[]',false, false, '0000-00-00', '')`;
+                    connection.query(q, function (error, results, fields) {
+                        if (error) throw error;
+                        res.end(JSON.stringify({type: "user add", comment: "successful"}));
+                      });
+                    break;
+                default:
+                    break;
+            }
             break;
         case "user":
             let subactb = url.searchParams.get("subact");
