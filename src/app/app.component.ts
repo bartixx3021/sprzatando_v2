@@ -13,7 +13,7 @@ export class AppComponent {
   log = false;
   log_pass = "";
   log_mail = "";
-  logged = {name: "", email: "", id : 0, is_admin : false};
+  logged = {name: "", email: "", id : 0, is_admin : false, is_banned : false};
   edit_n = "";
   edit_e = "";
   bannedID = 0;
