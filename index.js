@@ -64,6 +64,7 @@ http.createServer( (req, res) => {
                       });
                     break;
                 case "register":
+                    console.log("zrobione");
                     break;
                 case "get":
                     let objx = JSON.parse(url.searchParams.get("parametry"));
