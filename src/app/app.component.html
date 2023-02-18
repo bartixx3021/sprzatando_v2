@@ -16,5 +16,6 @@
   <h3>email:   </h3>{{logged.email}}   <button (click)="Edit('email')">Edit</button><input type="text" [(ngModel)]="edit_e"><br>
   <div *ngIf="logged.is_admin">
     <input type="number" [(ngModel)]="bannedID">
+    <button (click)="Ban()">BAN</button>
   </div>
 </div>

@@ -66,4 +66,13 @@ export class AppComponent {
       console.log(ans);
     })
   }
+
+  Ban() {
+    let tmp = [["is_banned"], [true], [this.bannedID]];
+    let tmpp = JSON.stringify(tmp);
+    fetch(`http://localhost:8080?action=user&subact=modify&parametry=${tmpp}`).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+    })
+  }
 }

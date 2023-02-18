@@ -36,7 +36,13 @@ http.createServer( (req, res) => {
                     let tab = JSON.parse(url.searchParams.get("parametry"));
                     let s = [];
                     for (let i = 0; i < tab[0].length; i++) {
-                        s.push(`${tab[0][i]} = '${tab[1][i]}'`);
+                        console.log(typeof(typeof(1)));
+                        if(typeof(tab[1][i]) == "number" || typeof(tab[1][i]) == "boolean") {
+                            s.push(`${tab[0][i]} = ${tab[1][i]}`);
+                        } else {
+                            s.push(`${tab[0][i]} = '${tab[1][i]}'`);
+                        }
+                        
                     }
                     let qu = `UPDATE userus SET ${s.join(" AND ")}  WHERE  id = ${tab[2]}`;
                     connection.query(qu, function (error, results, fields) {
