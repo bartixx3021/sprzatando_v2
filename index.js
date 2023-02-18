@@ -24,21 +24,24 @@ http.createServer( (req, res) => {
             switch (subactb) {
                 case "add":
                     let obj = JSON.parse(url.searchParams.get("parametry"));
-                    let t = Date();
-                    console.log(t);
-                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '1939-09-01', '[]',false, false, '0000-00-00', '')`;
+                    let t = new Date();
+                    console.log(t.toString().split("T")[0]);
+                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '${t.toString().split("T")[0]}', '[]',false, false, '0000-00-00', '')`;
                     connection.query(q, function (error, results, fields) {
                         if (error) throw error;
                         res.end(JSON.stringify({type: "user add", comment: "successful"}));
-                        connection.end();
                       });
                     break;
                 case "modify":
-                    let qu = "UPDATE userus SET name = 'Kanye North' WHERE id = 2";
+                    let tab = JSON.parse(url.searchParams.get("parametry"));
+                    let s = [];
+                    for (let i = 0; i < tab[0].length; i++) {
+                        s.push(`${tab[0][i]} = '${tab[1][i]}'`);
+                    }
+                    let qu = `UPDATE userus SET ${s.join(" AND ")}  WHERE  id = ${tab[2]}`;
                     connection.query(qu, function (error, results, fields) {
                         if (error) throw error;
                         res.end(JSON.stringify({type: "user mod", comment: "successful", result: results[0]}));
-                        connection.end();
                       });
                     break;
                 case "register":
@@ -49,7 +52,6 @@ http.createServer( (req, res) => {
                     connection.query(u, function (error, results, fields) {
                         if (error) throw error;
                         res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
-                        connection.end();
                       });
                       break;
                 default:
