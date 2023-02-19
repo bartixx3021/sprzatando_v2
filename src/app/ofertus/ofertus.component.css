@@ -17,7 +17,8 @@
 .filter {
     background-color: #0A4F9D;
     height: 100vh;
-    color:white
+    color:white;
+    box-shadow: -10px -10px 45px 21px rgba(0,0,0,0.45);
 }
 
 .showcase {
