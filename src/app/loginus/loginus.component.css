@@ -4,6 +4,7 @@
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
+
 .wrapper{
     background-image: url("/assets/login_bg.png");
     height: 100vh;
@@ -69,5 +70,10 @@ h1:hover{
 
 .invs, .invs:focus {
     border: none;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    z-index: 99;
 }
+
 

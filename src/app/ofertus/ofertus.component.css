@@ -1,0 +1,143 @@
+.invs, .invs:focus {
+    border: none;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    z-index: 99;
+}
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.abs{
+    position: absolute;
+}
+
+.filter {
+    background-color: #0A4F9D;
+    height: 100vh;
+    color:white
+}
+
+.showcase {
+    overflow: auto; /*..will introduce scroll bar when needed..*/
+    height: 100vh;
+    color:black;
+}
+
+.testc {
+    height: 300px;
+    width: 200px;
+    background-color: red;
+}
+.testc2 {
+    height: 300px;
+    width: 200px;
+    background-color: green;
+}
+
+.filter_wrapper{
+    width: 80%;
+    height: 100vh;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+/* .slider{
+    background-color: #88EAFF;
+} */
+
+#slider::-moz-range-thumb{
+    background: #88EAFF;
+}
+.slider::-webkit-slider-thumb {
+    background: #88EAFF;;
+}
+
+.slider::-ms-track {
+    color: #88EAFF;
+    cursor: pointer;
+    background-color: #88EAFF; 
+    border-color: #88EAFF; 
+    /* border-width: ($custom-range-thumb-height * .5);
+    @include box-shadow($custom-range-track-box-shadow); */
+}
+
+.dropdown-toggle{
+    color: white;
+    text-decoration: none;
+
+}
+
+.invs_filter {
+    border: none;
+    position: absolute;
+    top: 1%;
+    left: 2%;
+    z-index: 99;
+}
+
+.offcanvas {
+    background-color: #0A4F9D;
+}
+
+.offcanvas *{
+    color: white;
+}
+
+.dropdown-menu *{
+    color: black;
+}
+
+.btn-close{
+    color: white;
+}
+
+.offerus_w{
+    width: 100%;
+}
+
+
+/* 
+============================================
+                    KARTA OFERTY 
+============================================
+*/
+
+
+.offer_card{
+    width: 100%;
+    border-top: solid 1px hsla(0, 0%, 0%, 0.25);
+    border-bottom: solid 1px hsla(0, 0%, 0%, 0.25);
+    min-height: 200px;
+    text-decoration: none;
+    color:black;
+}
+.card_img_container{
+    min-height: 200px;
+    margin-right: 37.5px;
+    margin-left: 37.5px;
+}
+.img_div{
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+}
+
+.placz{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.bok{
+    font-style: italic;
+    color: hsla(0, 0%, 0%, 0.75);
+}
+
+
