@@ -32,6 +32,13 @@
     border: none;
     width: 100%;
     border-radius: 10px;
+    transition: 0.25s;
+}
+
+.bat:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
 }
 
 input, input:focus {
