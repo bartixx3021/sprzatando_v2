@@ -1,4 +1,21 @@
-img {
+/* img {
     height: 100px;
     width: 100px;
+} */
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+.bold {
+    font-weight: bold;
+}
+.testy a {
+    text-decoration: none;
+    color: hsla(0, 0%, 0%, 0.75);
+}
+
+.testy a:hover {
+    cursor: pointer;
+    font-weight: bold;
 }
