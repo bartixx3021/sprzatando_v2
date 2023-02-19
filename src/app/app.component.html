@@ -10,6 +10,7 @@
   <button (click)="Login()">Log in</button>
 </div>
 <div *ngIf="log">
+  <h1 *ngIf="logged.is_banned">BANNED</h1>
   <h2>loggen in</h2>
   <img src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg">
   <h3>user:   </h3>{{logged.name}}   <button (click)="Edit('name')">Edit</button><input type="text" [(ngModel)]="edit_n"><br>
