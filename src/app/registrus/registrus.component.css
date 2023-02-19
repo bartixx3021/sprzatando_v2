@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+.wrapper{
+    background-image: url("/assets/login_bg.png");
+    height: 100vh;
+    background-size: cover;
+    position: relative;
+}
+
+.log_form{
+    width: 70%;
+}
+
+.abs{
+    position: absolute;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.45);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bat {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.bat:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
+}
+
+input, input:focus {
+    outline: none;
+    border-style: none;
+    border-bottom: solid 1px hsla(0, 0%, 38%, 0.4);
+}
+
+
+input::placeholder{
+    color: hsla(0, 0%, 38%, 0.4);
+    
+}
+
+a {
+    text-decoration: none;
+    color: hsla(0, 0%, 0%, 0.75);
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+h1:hover{
+    cursor: default;
+}
+
+.invs, .invs:focus {
+    border: none;
+}
+
+input {
+    padding: 0
+}
+
+.widus {
+    width: 100%;;
+}

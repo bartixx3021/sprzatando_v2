@@ -14,12 +14,23 @@
     color: hsla(0, 0%, 0%, 0.75);
 }
 
-.testy a:hover {
+.testy:hover {
     cursor: pointer;
     font-weight: bold;
+    
+}
+
+.sus:hover {
+    text-decoration: underline;
 }
 
 .invs{
     border: none;
 }
 
+.abs {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    z-index: 99;
+}
