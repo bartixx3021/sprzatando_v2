@@ -15,7 +15,7 @@ export class LoginusComponent implements OnInit {
   em = "";
   Redirect() {
     let obj = {pass : this.pass, mail: this.em};
-    let url = "http://130.162.234.221:8080?action=user&subact=get&parametry=" + JSON.stringify(obj);
+    let url = "http://130.162.234.221:8080?action=user&subact=get&security=ezzz&parametry=" + JSON.stringify(obj);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       console.log(ans);

@@ -14,6 +14,11 @@ http.createServer( (req, res) => {
     res.writeHead(200, {'Conent-Type' : 'text/html', 'Access-Control-Allow-Origin': '*'});
     //res.end(JSON.stringify({message: "ok"}));
     let action = url.searchParams.get("action");
+    let sec = url.searchParams.get("security");
+    if (sec == null) {
+        res.end(JSON.stringify({message: "Security Breach You are going down MR Roch"}));
+        return;
+    }
     switch (action) {
         case "offer":
             let subact = url.searchParams.get("subact");
