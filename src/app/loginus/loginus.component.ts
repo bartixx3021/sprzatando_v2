@@ -14,6 +14,13 @@ export class LoginusComponent implements OnInit {
   }
   pass = "";
   em = "";
+  ImageSorter(iput : string) {
+    let input = iput.replace(":", "DWUKROPEK");
+    while (input.includes("/") || input.includes(":")) {
+      input = input.replace("/", "SLASH").replace(":", "DWUKROPEK");
+    }
+    return input;
+  }
   Redirect() {
     let obj = {pass : this.pass, mail: this.em};
     let url = "http://130.162.234.221:8080?action=user&subact=get&security=ezzz&parametry=" + JSON.stringify(obj);
@@ -23,9 +30,9 @@ export class LoginusComponent implements OnInit {
       if (ans.result.length > 0) {
         let x = ans.result[0];
         console.log(x);
-        let ob = {id : x.id, name: x.name, img: x.img.replace(":", "AMOGUSSS").replace("/", "ZUS")};
+        let ob = {id : x.id, name: x.name, img: this.ImageSorter(x.img)};
         console.log(JSON.stringify(ob));
-        this.router.navigateByUrl( `menus/:${JSON.stringify(ob)}`);
+        this.router.navigateByUrl( `menus/:${ans.result[0].email}`);
       }
     })
   }

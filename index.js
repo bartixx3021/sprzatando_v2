@@ -80,6 +80,14 @@ http.createServer( (req, res) => {
                         res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
                       });
                       break;
+                case "select":
+                    //let obj2 = JSON.parse(url.searchParams.get("parametry"));
+                    let uu = `SELECT * FROM userus`;
+                    connection.query(uu, function (error, results, fields) {
+                        if (error) throw error;
+                        res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
+                      });
+                      break;
                 default:
                     res.end(JSON.stringify({message: "ERROR: no parameter given or invalid subact parameter"}));
                     break;
