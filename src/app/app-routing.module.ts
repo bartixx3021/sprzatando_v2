@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: "ofertus", component: OfertusComponent},
   {path: "registrus", component: RegistrusComponent},
   {path: "testus", component: TestusComponent},
-  {path: "menus", component: MenusComponent},
+  {path: "menus/:datus", component: MenusComponent},
   {path: "**", component: HomusComponent}
 ];
 

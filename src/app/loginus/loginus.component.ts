@@ -21,9 +21,11 @@ export class LoginusComponent implements OnInit {
       let ans = jsonData;
       console.log(ans);
       if (ans.result.length > 0) {
-        this.cookieService.set('datus', JSON.stringify(ans.result[0]), undefined, '/');
-        //console.log(this.cookieService.get("datus"));
-        this.router.navigateByUrl('/homus');
+        let x = ans.result[0];
+        console.log(x);
+        let ob = {id : x.id, name: x.name, img: x.img.replace(":", "AMOGUSSS").replace("/", "ZUS")};
+        console.log(JSON.stringify(ob));
+        this.router.navigateByUrl( `menus/:${JSON.stringify(ob)}`);
       }
     })
   }
