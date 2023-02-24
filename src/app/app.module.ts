@@ -9,6 +9,7 @@ import { RegistrusComponent } from './registrus/registrus.component';
 import { LoginusComponent } from './loginus/loginus.component';
 import { OfertusComponent } from './ofertus/ofertus.component';
 import { TestusComponent } from './testus/testus.component';
+import { MenusComponent } from './menus/menus.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TestusComponent } from './testus/testus.component';
     RegistrusComponent,
     LoginusComponent,
     OfertusComponent,
-    TestusComponent
+    TestusComponent,
+    MenusComponent
   ],
   imports: [
     BrowserModule,
