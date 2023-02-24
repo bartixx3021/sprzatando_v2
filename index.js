@@ -3,14 +3,14 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'password',
     database : 'databasus'
   });
 
 connection.connect();
 
 http.createServer( (req, res) => {
-    let url = new URL("http://localhost:8080" + req.url);
+    let url = new URL("http://130.162.234.221:8080" + req.url);
     res.writeHead(200, {'Conent-Type' : 'text/html', 'Access-Control-Allow-Origin': '*'});
     //res.end(JSON.stringify({message: "ok"}));
     let action = url.searchParams.get("action");
@@ -22,7 +22,7 @@ http.createServer( (req, res) => {
                     let obj = JSON.parse(url.searchParams.get("parametry"));
                     let t = new Date();
                     console.log(t.toString().split("T")[0]);
-                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '${t.toString().split("T")[0]}', '[]',false, false, '0000-00-00', '')`;
+                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '0000-00-00', '[]',false, false, '0000-00-00', '')`;
                     connection.query(q, function (error, results, fields) {
                         if (error) throw error;
                         res.end(JSON.stringify({type: "user add", comment: "successful"}));
@@ -65,6 +65,7 @@ http.createServer( (req, res) => {
                     break;
                 case "register":
                     console.log("zrobione");
+                    res.end(JSON.stringify({message: "ZROBIONE"}));
                     break;
                 case "get":
                     let objx = JSON.parse(url.searchParams.get("parametry"));
@@ -75,10 +76,12 @@ http.createServer( (req, res) => {
                       });
                       break;
                 default:
+                    res.end(JSON.stringify({message: "ERROR: no parameter given or invalid subact parameter"}));
                     break;
             }
             break;
         default:
+            res.end(JSON.stringify({message: "ERROR: no parameter given or invalid action parameter"}));
             break;
     }
      

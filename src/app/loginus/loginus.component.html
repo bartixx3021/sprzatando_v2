@@ -29,11 +29,11 @@
             <div class="log_form mt-5">
                 <h1 class="bold text-start mb-5 mt-5 fs-1">Logowanie</h1>
                 <div class="d-flex flex-column my-4">
-                    <input type="email" class="my-3 py-2 px-2 fs-5" placeholder="email">
-                    <input type="password" class="my-3 py-2 px-2 fs-5" placeholder="hasło"> 
+                    <input type="email" class="my-3 py-2 px-2 fs-5" placeholder="email" [(ngModel)]="em">
+                    <input type="password" class="my-3 py-2 px-2 fs-5" placeholder="hasło" [(ngModel)]="pass"> 
                 </div>
     
-                <button class="bold bat py-2 fs-4">zaloguj</button>
+                <button class="bold bat py-2 fs-4" (click)="Redirect()">zaloguj</button>
                 <div class="row mt-4">
                     <a class="fs-6 col-xxl-6 text-start mt-2" href="registrus">zarejestruj się</a>
                     <a class="fs-6 col-xxl-6 text-xxl-end mt-2">reset hasła</a>

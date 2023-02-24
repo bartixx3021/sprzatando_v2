@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: "ofertus", component: OfertusComponent},
   {path: "registrus", component: RegistrusComponent},
   {path: "testus", component: TestusComponent},
-  {path: "..", component: HomusComponent}
+  {path: "**", component: HomusComponent}
 ];
 
 @NgModule({
