@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-loginus',
   templateUrl: './loginus.component.html',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginusComponent implements OnInit {
 
-  constructor(private router : Router ) { }
+  constructor(private router : Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +21,9 @@ export class LoginusComponent implements OnInit {
       let ans = jsonData;
       console.log(ans);
       if (ans.result.length > 0) {
-        this.router.navigateByUrl('/testus');
+        this.cookieService.set('datus', JSON.stringify(ans.result[0]), undefined, '/');
+        //console.log(this.cookieService.get("datus"));
+        this.router.navigateByUrl('/homus');
       }
     })
   }

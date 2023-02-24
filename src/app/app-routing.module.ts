@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomusComponent } from './homus/homus.component';
 import { LoginusComponent } from './loginus/loginus.component';
+import { MenusComponent } from './menus/menus.component';
 import { OfertusComponent } from './ofertus/ofertus.component';
 import { RegistrusComponent } from './registrus/registrus.component';
 import { TestusComponent } from './testus/testus.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "ofertus", component: OfertusComponent},
   {path: "registrus", component: RegistrusComponent},
   {path: "testus", component: TestusComponent},
+  {path: "menus", component: MenusComponent},
   {path: "**", component: HomusComponent}
 ];
 
