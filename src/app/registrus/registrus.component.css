@@ -82,3 +82,18 @@ input {
 .widus {
     width: 100%;;
 }
+
+.selectus{
+    color: hsla(0, 0%, 38%, 0.9);
+    transition: 0.2s;
+}
+.selectus:hover{
+    color: black
+}
+
+.beczka {
+    width: 100%;
+}
+.beka{
+    width: 48%;
+}
