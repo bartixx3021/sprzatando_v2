@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrus',
@@ -7,9 +8,82 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrusComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private router : Router) { }
+  selector = "Kim ty jesteś straszydle???";
+  username = "";
+  email = "";
+  pass = "";
+  passrepeat = "";
+  is_offer = false;
+  is_search = true;
+  users :any[] = [];
   ngOnInit(): void {
+    this.GetUsers();
   }
 
+  GetUsers() {
+    let url = "http://130.162.234.221:8080?action=user&subact=select&security=ezzz&parametry=" + JSON.stringify({message: "ok"});
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      this.users = ans.result;
+    })
+  }
+  VerifyMail() {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].email == this.email) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  VerifyName() {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].name == this.username) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  CheckForSpecial(x : string) {
+    let str = "&/:";
+    for (let i = 0; i < str.length; i++) {
+      if (x.includes(str[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  SendData() {
+    if (!this.VerifyName()) {
+      alert("Użytkownik o danej nazwie już istnieje");
+      return;
+    }
+    if (!this.VerifyMail()) {
+      alert("Email połączony z innym kontem");
+      return;
+    }
+    if (this.username == "" || this.email == "" || this.pass == "" || this.passrepeat == "") {
+      alert("Żadne z pól nie może być puste!!!");
+      return;
+    }
+    if (this.pass != this.passrepeat) {
+      alert("Źle powtórzone hasło");
+    }
+    if (this.selector == "Kim ty jesteś straszydle???") {
+      alert("wybierz opcjęęęęę zlecenia");
+      return;
+    }
+    if (this.CheckForSpecial(this.username) && this.CheckForSpecial(this.email) && this.CheckForSpecial(this.pass)) {
+      let obj = {pass : this.pass, email: this.email, name : this.username};
+      let url = "http://130.162.234.221:8080?action=user&subact=add&security=ezzz&parametry=" + JSON.stringify(obj);
+      fetch(url).then(stream => stream.json()).then(jsonData => {
+        let ans = jsonData;
+        console.log(ans);
+        this.router.navigateByUrl( `menus/:${this.email}`);
+      })
+    }
+
+  }
 }

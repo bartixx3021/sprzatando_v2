@@ -41,7 +41,7 @@ http.createServer( (req, res) => {
                     let obj = JSON.parse(url.searchParams.get("parametry"));
                     let t = new Date();
                     console.log(t.toString().split("T")[0]);
-                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '${t.toString().split("T")[0]}', '[]',false, false, '0000-00-00', '')`;
+                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '2022-02-25', '[]',false, false, '1000-01-01', '')`;
                     connection.query(q, function (error, results, fields) {
                         if (error) throw error;
                         res.end(JSON.stringify({type: "user add", comment: "successful"}));
