@@ -23,14 +23,11 @@ http.createServer( (req, res) => {
         case "offer":
             let subact = url.searchParams.get("subact");
             switch (subact) {
-                case "add":
-                    let obj = JSON.parse(url.searchParams.get("parametry"));
-                    let t = new Date();
-                    console.log(t.toString().split("T")[0]);
-                    let q = `INSERT INTO userus VALUES (null, '${obj.pass}', '${obj.email}', '${obj.name}', true, true, false, '0000-00-00', '[]',false, false, '0000-00-00', '')`;
-                    connection.query(q, function (error, results, fields) {
+                case "select":
+                    let zapytanie = "SELECT * FROM ofertus;";
+                    connection.query(zapytanie, function (error, results, fields) {
                         if (error) throw error;
-                        res.end(JSON.stringify({type: "user add", comment: "successful"}));
+                        res.end(JSON.stringify({type: "offer select", comment: "successful", result: results}));
                       });
                     break;
                 default:

@@ -29,14 +29,12 @@ export class OfertusComponent implements OnInit {
     id_oferty: 2
   }
   ngOnInit(): void {
-    this.oferty.push(this.testUs)
-    this.oferty.push(this.testUs2)
-    this.oferty.push(this.testUs)
-    this.oferty.push(this.testUs2)
-    this.oferty.push(this.testUs)
-    this.oferty.push(this.testUs2)
-    this.oferty.push(this.testUs)
-    this.oferty.push(this.testUs2)
+    let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.oferty = ans.result;
+    })
     
 
   }

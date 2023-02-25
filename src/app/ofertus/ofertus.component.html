@@ -167,20 +167,20 @@
 
         <a *ngFor="let of of oferty; index as i;" class="offer_card d-flex flex-column flex-md-row" href="loginus">
             <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
-                <div class="img_div" style="background: url('{{of.pfp}}'); background-position: center; background-size: cover"></div>
+                <div class="img_div" style="background: url('{{of.img}}'); background-position: center; background-size: cover"></div>
             </div>
             <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
-                <h2 class="bold fs-3 mt-3">{{of.tytul}}</h2>
+                <h2 class="bold fs-3 mt-3">{{of.nazwa}}</h2>
                 <div class="d-flex justify-content-center justify-content-md-start">
-                    <h3 class="fs-5 me-3">{{of.miasto}}</h3>
-                    <h3 class="fs-5 bold">{{of.wynagrodzenie}}/h</h3>
+                    <h3 class="fs-5 me-3">{{of.location}}</h3>
+                    <h3 class="fs-5 bold">{{of.stawka}}/h</h3>
                 </div>
                 <div class="overflow-hidden aaa me-4">
                         <p class="placz m-0 fs-6">
-                            {{of.opis}}
+                            {{of.opisus}}
                         </p>
                 </div>
-                <p class="mt-1 bok">do {{of.dokiedy}}</p>
+                <p class="mt-1 bok">do {{of.do_kiedus}}</p>
             </div>
         </a>
 
