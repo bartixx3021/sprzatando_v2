@@ -76,11 +76,28 @@ export class RegistrusComponent implements OnInit {
       return;
     }
     if (this.CheckForSpecial(this.username) && this.CheckForSpecial(this.email) && this.CheckForSpecial(this.pass)) {
-      let obj = {pass : this.pass, email: this.email, name : this.username};
+      switch (this.selector) {
+        case "Zleceniobiorca":
+          this.is_offer = false;
+          this.is_search = true;
+          break;
+        case "Zleceniodawca":
+          this.is_offer = true;
+          this.is_search = false;
+          break;
+        case "Oba":
+          this.is_offer = true;
+          this.is_search = true;
+          break;
+        default:
+          break;
+      }
+      let idx = Math.floor(Math.random() * 9);
+      let obj = {pass : this.pass, email: this.email, name : this.username, is_offer : this.is_offer, is_search : this.is_search, picid : idx};
       let url = "http://130.162.234.221:8080?action=user&subact=add&security=ezzz&parametry=" + JSON.stringify(obj);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
-        console.log(ans);
+        //console.log(ans);
         this.router.navigateByUrl( `menus/:${this.email}`);
       })
     }
