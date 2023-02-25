@@ -31,6 +31,50 @@ http.createServer( (req, res) => {
                         res.end(JSON.stringify({type: "offer select", comment: "successful", result: results}));
                       });
                     break;
+                case "add":
+                    let obj = JSON.parse(url.searchParams.get("parametry"));
+                    let t = new Date();
+                    let x1 = (t.getMonth() + 1).toString();
+                    if (x1.length < 2) {
+                        x1 = `0${x1}`;
+                    }
+                    let x2 = t.getDate().toString();
+                    if (x2.length < 2) {
+                        x2 = `0${x2}`;
+                    }
+                    let data = `${t.getFullYear()}-${x1}-${x2}`;
+                    let q = `INSERT INTO ofertus VALUES (null, '${obj.nazwa}', ${obj.creator}, '${obj.location}', ${obj.stawka}, '${obj.opisus}', '${obj.od}', '${obj.do}', '${obj.typus}', '${data}', -1, '[]',false, false, true,'${obj.picurl}')`;
+                    connection.query(q, function (error, results, fields) {
+                        if (error) throw error;
+                        res.end(JSON.stringify({type: "offer add", comment: "successful"}));
+                      });
+                    break;
+                case "edit":
+                    let tab = JSON.parse(url.searchParams.get("parametry"));
+                    let s = [];
+                    for (let i = 0; i < tab[0].length; i++) {
+                        console.log(typeof(typeof(1)));
+                        if(typeof(tab[1][i]) == "number" || typeof(tab[1][i]) == "boolean") {
+                            s.push(`${tab[0][i]} = ${tab[1][i]}`);
+                        } else {
+                            s.push(`${tab[0][i]} = '${tab[1][i]}'`);
+                        }
+                        
+                    }
+                    let qu = `UPDATE ofertus SET ${s.join(" , ")}  WHERE  id = ${tab[2]}`;
+                    connection.query(qu, function (error, results, fields) {
+                        if (error) throw error;
+                        res.end(JSON.stringify({type: "offer edit", comment: "successful", result: results[0]}));
+                      });
+                    break;
+                case "delete":
+                    let ta = JSON.parse(url.searchParams.get("parametry"));
+                    let qz = `DELETE FROM ofertus WHERE  id = ${ta.id}`;
+                    connection.query(qz, function (error, results, fields) {
+                        if (error) throw error;
+                        res.end(JSON.stringify({type: "offer delete", comment: "successful", result: results[0]}));
+                      });
+                    break;
                 default:
                     break;
             }
@@ -68,7 +112,7 @@ http.createServer( (req, res) => {
                         }
                         
                     }
-                    let qu = `UPDATE userus SET ${s.join(" AND ")}  WHERE  id = ${tab[2]}`;
+                    let qu = `UPDATE userus SET ${s.join(" , ")}  WHERE  id = ${tab[2]}`;
                     connection.query(qu, function (error, results, fields) {
                         if (error) throw error;
                         res.end(JSON.stringify({type: "user mod", comment: "successful", result: results[0]}));
@@ -94,6 +138,14 @@ http.createServer( (req, res) => {
                         res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
                       });
                       break;
+                case "delete":
+                  let ta = JSON.parse(url.searchParams.get("parametry"));
+                  let qz = `DELETE FROM ofertus WHERE  id = ${ta.id}`;
+                  connection.query(qz, function (error, results, fields) {
+                      if (error) throw error;
+                      res.end(JSON.stringify({type: "user del", comment: "successful", result: results[0]}));
+                    });
+                  break;
                 default:
                     res.end(JSON.stringify({message: "ERROR: no parameter given or invalid subact parameter"}));
                     break;
