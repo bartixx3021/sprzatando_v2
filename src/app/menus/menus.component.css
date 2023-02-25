@@ -1,4 +1,128 @@
-img {
-    height: 200px;
-    width: 300px;
+.invs, .invs:focus {
+    border: none;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    z-index: 99;
+}
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.abs{
+    position: absolute;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.offcanvas-body a:hover {
+    text-decoration: underline;
+}
+
+
+.menus{
+    height: 100vh;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.klikus{
+    width: 100%;
+}
+
+.klikus:hover{
+    background-color: rgba(0, 0, 0, 0.075);
+    cursor: pointer;
+}
+
+.menu_wrapper {
+    height: 100%;
+}
+
+.selec {
+    background-color: rgba(0, 0, 0, 0.075);
+    font-weight: bold; 
+}
+
+.Profilus {
+    width: 100%;
+    /* background-color: aqua; */
+    height: 100vh;
+}
+
+
+.card_img_container{
+    /* min-height: 200px;
+    margin-right: 37.5px;
+    margin-left: 37.5px; */
+}
+.img_div{
+    height: max(15vh,175px);
+    width: max(15vh,175px);
+    border-radius: 50%;
+}
+
+/* .card_img_container{
+    min-height: 200px;
+}
+.img_div{
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+} */
+
+.dano_zmieniaczus {
+    width: 100%;
+    /* height: 200px; */
+    background-color: rgba(0, 0, 0, 0.075);
+    border-radius: 20px
+}
+.stoprocentus {
+    width:100%;
+}
+
+.bat {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.bat:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
+}
+
+.ed {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.ed:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
+}
+
+input, input:focus {
+    outline: none;
+    border-style: none;
+    border-bottom: solid 1px hsla(0, 0%, 38%, 0.4);
+    background-color: rgba(0, 0, 0, 0.075);
+    border-radius: 10px;
+    width: 100%;
+}
+
+
+input::placeholder{
+    color: hsla(0, 0%, 38%, 0.4);
+    
 }

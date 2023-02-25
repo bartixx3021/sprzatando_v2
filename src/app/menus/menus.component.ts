@@ -54,4 +54,40 @@ export class MenusComponent implements OnInit {
     return input;
   }
 
+  isZleceniodawca = true;
+  isZleceniobiorca = true;
+
+
+
+
+
+  EdytusLoginus = false;
+  EdytusEmailus = false;
+  EdytusHaslus = false;
+
+  LoginusEditus(){
+    this.EdytusLoginus = true;
+  }
+  LoginusZapisus(){
+    this.EdytusLoginus = false;
+  }
+
+
+  EmailusEditus(){
+    this.EdytusEmailus = true;
+  }
+  EmailusZapisus(){
+    this.EdytusEmailus = false;
+  }
+
+
+  HaslusEditus(){
+    this.EdytusHaslus = true;
+  }
+  HaslusZapisus(){
+    this.EdytusHaslus = false;
+  }
+
+  
+
 }

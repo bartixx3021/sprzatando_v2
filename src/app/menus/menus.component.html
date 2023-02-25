@@ -1,2 +1,182 @@
-<p>Hello bosss</p>
-<img src="{{image}}">
+<button class="navbar-toggler invs" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+  aria-controls="offcanvasNavbar">
+  <img src="assets/burgir2.svg" style="width: 50px; height: 50px;" class="d-md-none" alt="">
+  <img src="assets/burgir2.svg" style="width: 50px; height: 50px;"
+    class="d-sm-none d-none d-md-block d-lg-block d-xl-block d-xxl-block" alt="">
+</button>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title bold fs-3 mt-2" id="offcanvasNavbarLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+      <li class="nav-item">
+        <a class="nav-link testy" aria-current="page" href="homus">Strona Główna</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link testy" href="#">Profil</a>
+      </li>
+      <li class="nav-item mt-4 bold">
+        <a class="nav-link sus" href="loginus">Zaloguj</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<section class="mt-0 pt-0 row">
+    <div class="menus d-none d-md-block col-md-4 col-lg-3 col-xl-2 p-0" >
+        <div class="menu_wrapper overflow-auto">
+            <h1 class="bold fs-1 mt-3 ms-3">Menu</h1>
+            <div class="klikus py-3 mt-5 mb-1  selec">
+                <p class="fs-4 ms-3">Profil</p>
+            </div>
+            <div *ngIf="isZleceniodawca">
+                <div class="klikus py-3 mb-1">
+                    <p class="fs-4 ms-3">Stwórz oferte</p>
+                </div>
+                <div class="klikus py-3 mb-1">
+                    <p class="fs-4 ms-3">Moje oferty</p>
+                </div>
+            </div>
+            <div class="klikus py-3 mb-1" *ngIf="isZleceniobiorca">
+                <p class="fs-4 ms-3">Moje zgłoszenia</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="prawus_wrapus col-md-8 col-lg-9 col-xl-10 p-0">
+        <div class="Profilus overflow-auto row m-0 p-0">
+
+            <div class="col-md-0 col-lg-1 col-xxl-2">
+
+            </div>
+
+
+            <div class="col-md-12 col-lg-10 col-xxl-8">
+                <h1 class="bold text-center mt-3">Edytuj Profil</h1>
+                <div class="card_img_container d-flex align-items-center justify-content-center mt-5">
+                    <div class="img_div" style="background: url('assets/login_bg.png'); background-position: center; background-size: cover"></div>
+                </div>
+                <div class="stoprocentus d-flex justify-content-center mt-3">
+                    <button class="bold bat py-2 px-3 fs-5">zmień zdjęcie</button>
+                </div>
+                <div class="stoprocentus d-flex justify-content-center mt-5">
+                    <div class="dano_zmieniaczus px-0 px-sm-2 px-xl-3 mb-2 pb-2">
+                        <h1 class="bold fs-3 text-center mt-4">Edytuj Dane</h1>
+                        <!-- 
+                            =====================================
+                                        EDYTUJ DO LOGINU 
+                            =====================================
+                        -->
+
+                        <div *ngIf="!EdytusLoginus" class="row p-0 my-4 d-md-row d-flex flex-column flex-md-row align-items-center">
+    
+
+                            <div class="col-md-8 text-center text-md-start mb-2">
+                                <p class="fs-5"><span class="bold">Login:</span> Jakub P</p>
+                            </div>
+                            <div class="col-4 text-center text-md-end">
+                                <button class="bold ed py-2 px-3 fs-5" (click)="LoginusEditus()">Edytuj</button>
+                            </div>
+
+    
+                        </div>
+
+
+                        <div *ngIf="EdytusLoginus" class="row p-0 my-4 d-md-row d-flex flex-column flex-md-row align-items-center">
+    
+
+                            <div class="col-md-8 text-center text-md-start mb-2">
+                                <input type="text" class="py-2 px-2 fs-5" placeholder="Nowy Login">
+                            </div>
+                            <div class="col-4 text-center text-md-end">
+                                <button class="bold ed py-2 px-3 fs-5" (click)="LoginusZapisus()">Zapisz</button>
+                            </div>
+
+    
+                        </div>
+    
+                        <!-- 
+                            =====================================
+                                        EDYTUJ DO EMAILU
+                            =====================================
+                        -->
+
+
+
+                        <div *ngIf="!EdytusEmailus" class="row p-0 mt-4 d-md-row d-flex flex-column flex-md-row align-items-center">
+    
+
+                            <div class="col-md-8 text-center text-md-start mb-2">
+                                <p class="fs-5"><span class="bold">Email:</span> mik.kasp.opole@gmail.com</p>
+                            </div>
+                            <div class="col-4 text-center text-md-end">
+                                <button class="bold ed py-2 px-3 fs-5" (click)="EmailusEditus()">Edytuj</button>
+                            </div>
+    
+                        </div>
+
+                        <div *ngIf="EdytusEmailus" class="row p-0 mt-4 d-md-row d-flex flex-column flex-md-row align-items-center">
+    
+
+                            <div class="col-md-8 text-center text-md-start mb-2">
+                                <input type="email" class="py-2 px-2 fs-5" placeholder="Nowy Email">
+                            </div>
+                            <div class="col-4 text-center text-md-end">
+                                <button class="bold ed py-2 px-3 fs-5" (click)="EmailusZapisus()">Zapisz</button>
+                            </div>
+    
+                        </div>
+    
+                        <!-- 
+                            =====================================
+                                        EDYTUJ DO HASŁA 
+                            =====================================
+                        -->
+
+
+
+
+                        <div *ngIf="!EdytusHaslus" class="row p-0 mt-4 mb-4 d-md-row d-flex flex-column flex-md-row align-items-center">
+    
+
+                            <div class="col-md-8 text-center text-md-start mb-2">
+                                <p class="fs-5"><span class="bold">Hasło:</span> **********P</p>
+                            </div>
+                            <div class="col-4 text-center text-md-end">
+                                <button class="bold ed py-2 px-3 fs-5" (click)="HaslusEditus()">Edytuj</button>
+                            </div>
+
+    
+                        </div>
+
+                        <div *ngIf="EdytusHaslus" class="row p-0 my-4 d-md-row d-flex flex-column flex-md-row align-items-center">
+    
+
+                            <div class="col-md-8 text-center text-md-start mb-2">
+                                <input type="password" class="py-2 px-2 fs-5" placeholder="Nowe Hasło">
+                            </div>
+                            <div class="col-4 text-center text-md-end">
+                                <button class="bold ed py-2 px-3 fs-5" (click)="HaslusZapisus()">Zapisz</button>
+                            </div>
+
+    
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-0 col-lg-1 col-xxl-2">
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- <p>Hello bosss</p> -->
+<!-- <img src="{{image}}"> -->
