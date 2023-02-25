@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-menus',
   templateUrl: './menus.component.html',
@@ -7,12 +7,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MenusComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router : Router) { }
 
   image = "";
   data = {img : ""};
   users :any[] = [];
   selected :any = {};
+  pazz = "";
   ngOnInit(): void {
     //console.log(id.replace(":", ""));
     //this.data = JSON.parse(this.ImageSorter(id.replace(":", "")));
@@ -31,6 +32,12 @@ export class MenusComponent implements OnInit {
       }
     }
   }
+  CreatePass(ln : Number) {
+    this.pazz = "";
+    for (let i = 0; i < ln; i++) {
+      this.pazz += "*";
+    }
+  }
   GetUsers() {
     let url = "http://130.162.234.221:8080?action=user&subact=select&security=ezzz&parametry=" + JSON.stringify({message: "ok"});
     fetch(url).then(stream => stream.json()).then(jsonData => {
@@ -43,6 +50,7 @@ export class MenusComponent implements OnInit {
       this.selected = this.FindUser(id.replace(":", ""));
       //console.log(this.selected);
       this.image = this.selected.img;
+      this.CreatePass(this.selected.pass.length);
     })
   }
 
@@ -68,24 +76,72 @@ export class MenusComponent implements OnInit {
   LoginusEditus(){
     this.EdytusLoginus = true;
   }
+  new_login = "";
+  LoginusVerificus() {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].name == this.new_login) {
+        return false;
+      }
+    }
+    return true;
+  }
   LoginusZapisus(){
+    if (!this.LoginusVerificus()) {
+      alert("Użytkownik o podanej nazwie istnieje !!!");
+      return;
+    }
     this.EdytusLoginus = false;
+    let obj :any[]= [["name"], [this.new_login], [this.selected.id]];
+    let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      location.reload();
+    })
   }
 
-
+  new_email = "";
+  EmailusVerificus() {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].email == this.new_email) {
+        return false;
+      }
+    }
+    return true;
+  }
   EmailusEditus(){
     this.EdytusEmailus = true;
+    
   }
   EmailusZapisus(){
+    if (!this.EmailusVerificus()) {
+      alert("Email powiązany z innym kontem!!!");
+      return;
+    }
     this.EdytusEmailus = false;
+    let obj :any[]= [["email"], [this.new_email], [this.selected.id]];
+    let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.router.navigateByUrl( `menus/:${this.new_email}`);
+    })
   }
 
 
   HaslusEditus(){
     this.EdytusHaslus = true;
   }
+  new_pass = "";
   HaslusZapisus(){
     this.EdytusHaslus = false;
+    let obj :any[]= [["pass"], [this.new_pass], [this.selected.id]];
+    let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      location.reload();
+    })
   }
 
   
