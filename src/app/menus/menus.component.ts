@@ -169,5 +169,65 @@ export class MenusComponent implements OnInit {
     this.last = ktura;
   }
   
+  // TWORZENIE OFERT
+  nazwa = "";
+  creator = this.selected.id;
+  miejsce = "";
+  stawka = "";
+  opisus = "";
+  od_kiedy = "";
+  do_kiedy = "";
+  typid = "";
+  picurl = "";
+  stylus = `{}`;
+  typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
+  AddusOfferus() {
+    let selected_typ = this.typy[Number(this.typid)];
+    this.creator = this.selected.id;
+    console.log(this.creator);
+    let odod = new Date(this.od_kiedy);
+    let dodo = new Date(this.do_kiedy);
+    let od_str = `${odod.getFullYear()}-${odod.getMonth() +1}-${odod.getDate()}`;
+    let do_str = `${dodo.getFullYear()}-${dodo.getMonth() +1}-${dodo.getDate()}`;
 
+    // USTAW DATE ROZPOCZĘCIA
+
+    if ((odod.getMonth() +1).toString().length < 2 && (odod.getDate()).toString().length < 2) {
+      od_str = `${odod.getFullYear()}-0${odod.getMonth() +1}-0${odod.getDate()}`;
+      
+    } else if ((odod.getMonth() +1).toString().length < 2) {
+      od_str = `${odod.getFullYear()}-0${odod.getMonth() +1}-${odod.getDate()}`;
+      
+    } else if ((odod.getDate()).toString().length < 2) {
+      od_str = `${odod.getFullYear()}-${odod.getMonth() +1}-0${odod.getDate()}`
+    }
+
+    //USTAW DATE ZAKONCZENIA
+
+    if ((dodo.getMonth() +1).toString().length < 2 && (dodo.getDate()).toString().length < 2) {
+      do_str = `${dodo.getFullYear()}-0${dodo.getMonth() +1}-0${dodo.getDate()}`;
+      
+    } else if ((dodo.getMonth() +1).toString().length < 2) {
+      do_str = `${dodo.getFullYear()}-0${dodo.getMonth() +1}-${dodo.getDate()}`;
+      
+    } else if ((dodo.getDate()).toString().length < 2) {
+      do_str = `${dodo.getFullYear()}-${dodo.getMonth() +1}-0${dodo.getDate()}`
+    }
+    console.log(do_str);
+    
+    let obj = {nazwa : this.nazwa, creator : this.creator , location : this.miejsce,opisus : this.opisus, stawka : this.stawka, od : od_str, do : do_str, typus: selected_typ, picurl : this.picurl};
+    let url = "http://130.162.234.221:8080?action=offer&subact=add&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      location.reload();
+    })
+    
+  }
+
+  AddusPicus() {
+    let value = prompt("Podaj url zdjęcia:   ");
+    this.picurl = String(value);
+    this.stylus = `{'backgroud-image' : '${this.picurl}'}`;
+  }
 }

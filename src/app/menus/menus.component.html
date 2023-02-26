@@ -31,7 +31,7 @@
             <div class="klikus py-3 mt-5 mb-1  selec" id="jeden" (click)="ChangusStrony(0)">
                 <p class="fs-4 ms-3">Profil</p>
             </div>
-            <div *ngIf="isZleceniodawca">
+            <div *ngIf="selected.is_offer">
                 <div class="klikus py-3 mb-1" (click)="ChangusStrony(1)" id="dwa">
                     <p class="fs-4 ms-3">Stwórz oferte</p>
                 </div>
@@ -39,7 +39,7 @@
                     <p class="fs-4 ms-3">Moje oferty</p>
                 </div>
             </div>
-            <div class="klikus py-3 mb-1" *ngIf="isZleceniobiorca" (click)="ChangusStrony(3)" id="cztery">
+            <div class="klikus py-3 mb-1" *ngIf="selected.is_search" (click)="ChangusStrony(3)" id="cztery">
                 <p class="fs-4 ms-3">Moje zgłoszenia</p>
             </div>
         </div>
@@ -192,9 +192,8 @@
                 <div class="row m-0 p-0">
                     <div class="col-12 col-xl-4 testleft d-flex flex-column align-items-center mt-5">
                         <div class="image_con">
-
                         </div>
-                        <button class="bold ed py-2 px-5 fs-5 mt-5">Dodaj zdjęcie</button>
+                        <button class="bold ed py-2 px-5 fs-5 mt-5" (click)="AddusPicus()">Dodaj zdjęcie</button>
                         
                     </div>
                     <div class=" col-1 d-xl-none"></div>
@@ -207,10 +206,10 @@
                             =====================================
                         -->
 
-                        <input type="text" class="py-2 px-2 fs-5 mt-5 offer_input w-100" placeholder="Tytuł oferty">
+                        <input type="text" class="py-2 px-2 fs-5 mt-5 offer_input w-100" placeholder="Tytuł oferty" [(ngModel)]="nazwa">
                         <div class="row d-flex justify-content-between">
-                            <input type="text" class="py-2 px-2 fs-5 mt-5 offer_input col-6 col-sm-5" placeholder="Lokalizacja">
-                            <input type="number" class="py-2 px-2 fs-5 mt-5 offer_input col-4 col-xl-3 col-xxl-3" min="0" placeholder="Stawka">
+                            <input type="text" class="py-2 px-2 fs-5 mt-5 offer_input col-6 col-sm-5" placeholder="Lokalizacja" [(ngModel)]="miejsce">
+                            <input type="number" class="py-2 px-2 fs-5 mt-5 offer_input col-4 col-xl-3 col-xxl-3" min="0" placeholder="Stawka" [(ngModel)]="stawka">
                         </div>
 
                         <!-- 
@@ -220,7 +219,7 @@
                         -->
 
                         <div class="form-floating mt-5">
-                            <textarea class="form-control fs-6" placeholder="Opis" id="Opis"></textarea>
+                            <textarea class="form-control fs-6" placeholder="Opis" id="Opis" [(ngModel)]="opisus"></textarea>
                             <label for="Opis" class="fs-5 labelek">Opis oferty</label>
                         </div>
 
@@ -236,28 +235,28 @@
 
                         <div class="row mt-4 p-0">
                             <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box1" value="option1">
+                                <input class="form-check-input fs-6 me-1" type="radio" id="box1" name="typusy" value="0" [(ngModel)]="typid">
                                 <label class="form-check-label fs-6" for="box1">Wywóz Śmieci</label>
                               </div>
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box2" value="option2">
+                                <input class="form-check-input fs-6 me-1" type="radio" id="box2" name="typusy" value="1" [(ngModel)]="typid">
                                 <label class="form-check-label fs-6" for="box2">Sprzątanie mieszkania</label>
                               </div>
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box3" value="option3">
+                                <input class="form-check-input fs-6 me-1" type="radio" id="box3" name="typusy" value="2" [(ngModel)]="typid">
                                 <label class="form-check-label fs-6" for="box3">Mycie Auta</label>
                               </div>
 
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box4" value="option1">
+                                <input class="form-check-input fs-6 me-1" type="radio" id="box4" name="typusy" value="3" [(ngModel)]="typid">
                                 <label class="form-check-label fs-6" for="box4">coś tam</label>
                               </div>
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box5" value="option2">
+                                <input class="form-check-input fs-6 me-1" type="radio" id="box5" name="typusy" value="4" [(ngModel)]="typid">
                                 <label class="form-check-label fs-6" for="box5">Ciukuluku</label>
                               </div>
                               <div class="d-flex align-items-center col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box6" value="option3">
+                                <input class="form-check-input fs-6 me-1" type="radio" id="box6" name="typusy" value="5" [(ngModel)]="typid">
                                 <input type="text" class="offer_input ps-1 fs-6 w-100" placeholder="inne">
                               </div>
                         </div>
@@ -270,10 +269,11 @@
 
                         <div class="d-flex-column d-sm-flex align-items-center mt-4">
                             <p class="fs-5 bold col-12 col-sm-auto">Data wykonania</p>
-                            <input type="text" class="ps-1 fs-5 offer_input col-12 col-sm-4 col-lg-3 ms-0 ms-sm-4" onfocus="(this.type='date')" placeholder="Data">
+                            <input type="text" class="ps-1 fs-5 offer_input col-12 col-sm-4 col-lg-3 ms-0 ms-sm-4" onfocus="(this.type='date')" placeholder="Od" [(ngModel)]="od_kiedy">
+                            <input type="text" class="ps-1 fs-5 offer_input col-12 col-sm-4 col-lg-3 ms-0 ms-sm-4" onfocus="(this.type='date')" placeholder="Do" [(ngModel)]="do_kiedy">
                         </div>
                         <div class="w-100 text-center mt-5">
-                            <button class="bold ed py-2 px-5 fs-5 mt-2 mt-sm-3 mt-lg-5">Dodaj oferte</button>
+                            <button class="bold ed py-2 px-5 fs-5 mt-2 mt-sm-3 mt-lg-5" (click)="AddusOfferus()">Dodaj oferte</button>
                         </div>
                     </div>
                 </div>
