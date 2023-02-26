@@ -150,15 +150,16 @@ export class MenusComponent implements OnInit {
   }
 
 
+  // Jak będziesz zmieniał se tu to odrazu "last" zmień na odpowiadający indeks pozdro 600
+  stronaProfil = true; //0
+  stronaStworzOferta = false; //1
+  stronaMojeOferty = false; //2
+  stronaMojeZglo = false; //3
 
-  stronaProfil = true;
-  stronaStworzOferta = false;
-  stronaMojeOferty = false;
-  stronaMojeZglo = false;
+  last = 0;
 
   listastron = [this.stronaProfil,this.stronaStworzOferta,this.stronaMojeOferty,this.stronaMojeZglo];
   listaCss = ["jeden","dwa","czy","cztery"]
-  last = 0;
   ChangusStrony(ktura: number){
     this.listastron[this.last] = !this.listastron[this.last];
     this.listastron[ktura] = !this.listastron[ktura];

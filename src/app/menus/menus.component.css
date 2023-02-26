@@ -53,12 +53,6 @@
     height: 100vh;
 }
 
-
-.card_img_container{
-    /* min-height: 200px;
-    margin-right: 37.5px;
-    margin-left: 37.5px; */
-}
 .img_div{
     height: max(15vh,175px);
     width: max(15vh,175px);
