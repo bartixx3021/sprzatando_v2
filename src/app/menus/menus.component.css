@@ -112,7 +112,7 @@
     color: black;
 }
 
-input, input:focus {
+.inputa, .inputa:focus {
     outline: none;
     border-style: none;
     border-bottom: solid 1px hsla(0, 0%, 38%, 0.4);
@@ -122,7 +122,45 @@ input, input:focus {
 }
 
 
-input::placeholder{
+.inputa::placeholder{
     color: hsla(0, 0%, 38%, 0.4);
     
+}
+
+.image_con{
+    height: max(20vh,250px);
+    width: max(80%,250px);
+    position: relative;
+    padding-bottom:80%;
+    background-color: rgba(0, 0, 0, 0.075);
+    border-radius: 10px;
+}
+
+/* .testleft {
+    background-color: red;
+} */
+/* .testa {
+    background-color: aqua;
+} */
+
+.offer_input, .offer_input:focus{
+    outline: none;
+    border-style: none;
+    border-bottom: solid 1px hsla(0, 0%, 38%, 0.4);
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.offer_input::placeholder{
+    color: hsla(0, 0%, 38%, 0.4);
+    
+}
+
+.form-control{
+    height: 20vh;
+}
+
+.labelek{
+    color: hsla(0, 0%, 38%, 0.4);
+
 }

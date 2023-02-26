@@ -62,6 +62,11 @@ export class MenusComponent implements OnInit {
     return input;
   }
 
+
+
+
+  
+
   isZleceniodawca = true;
   isZleceniobiorca = true;
 
@@ -144,6 +149,24 @@ export class MenusComponent implements OnInit {
     })
   }
 
+
+
+  stronaProfil = true;
+  stronaStworzOferta = false;
+  stronaMojeOferty = false;
+  stronaMojeZglo = false;
+
+  listastron = [this.stronaProfil,this.stronaStworzOferta,this.stronaMojeOferty,this.stronaMojeZglo];
+  listaCss = ["jeden","dwa","czy","cztery"]
+  last = 0;
+  ChangusStrony(ktura: number){
+    this.listastron[this.last] = !this.listastron[this.last];
+    this.listastron[ktura] = !this.listastron[ktura];
+    console.log(this.listaCss[this.last]);
+    (<HTMLDivElement>document.getElementById(this.listaCss[this.last])).classList.remove('selec');
+    (<HTMLDivElement>document.getElementById(this.listaCss[ktura])).classList.add('selec');
+    this.last = ktura;
+  }
   
 
 }
