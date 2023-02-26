@@ -97,9 +97,9 @@
             <h1 class="bold mt-4">Filtry</h1>
             <div class="p-0 m-0 d-flex justify-content-between">
                 <label for="customRange1" class="form-label col-6 p-0">wynagrodzenie</label>
-                <p class="">działąjjjjjjjj</p>
+                <p class="">{{pointer}}+/h</p>
             </div>
-            <input type="range" class="form-range slider" id="slider" id="customRange1">
+            <input type="range" class="form-range slider" id="slider" id="customRange1" min="{{min}}" max="{{max}}" step="1" [(ngModel)]="pointer" (change)="PointerusAlterus()">
 
             <div class="dropdown mt-4">
                 <a class="dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -107,9 +107,7 @@
                 </a>
               
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li *ngFor="let m of miasta; index as mi"><a class="dropdown-item" (click)="SelectusMiastus(mi)">{{m}}</a></li>
                 </ul>
             </div>
 
@@ -119,9 +117,7 @@
                 </a>
               
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li *ngFor="let item of typusy; index as ti"><a class="dropdown-item" (click)="SelectusTypus(ti)">{{item}}</a></li>
                 </ul>
             </div>
 
@@ -165,7 +161,7 @@
             ==========================================
         -->
 
-        <a *ngFor="let of of oferty; index as i;" class="offer_card d-flex flex-column flex-md-row" href="loginus">
+        <a *ngFor="let of of displayed; index as i;" class="offer_card d-flex flex-column flex-md-row" href="loginus">
             <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
                 <div class="img_div" style="background: url('{{of.img}}'); background-position: center; background-size: cover"></div>
             </div>
