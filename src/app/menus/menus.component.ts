@@ -101,7 +101,7 @@ export class MenusComponent implements OnInit {
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       console.log(ans);
-      location.reload();
+      this.router.navigateByUrl( `menus/:${this.selected.email}`);
     })
   }
 
@@ -145,7 +145,7 @@ export class MenusComponent implements OnInit {
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       console.log(ans);
-      location.reload();
+      this.router.navigateByUrl( `menus/:${this.selected.email}`);
     })
   }
 
@@ -220,7 +220,18 @@ export class MenusComponent implements OnInit {
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       console.log(ans);
-      location.reload();
+      this.nazwa = "";
+      this.creator = this.selected.id;
+      this.miejsce = "";
+      this.stawka = "";
+      this.opisus = "";
+      this.od_kiedy = "";
+      this.do_kiedy = "";
+      this.typid = "";
+      this.picurl = "";
+      this.stylus = `{}`;
+      this.ChangusStrony(0);
+      this.router.navigateByUrl( `menus/:${this.selected.email}`);
     })
     
   }

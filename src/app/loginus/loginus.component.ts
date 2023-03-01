@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-loginus',
   templateUrl: './loginus.component.html',
@@ -8,7 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginusComponent implements OnInit {
 
-  constructor(private router : Router, private cookieService: CookieService) { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
