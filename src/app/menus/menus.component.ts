@@ -190,6 +190,15 @@ export class MenusComponent implements OnInit {
     }
     return true;
   }
+  VerifyPic(value :string) {
+    let s = "<>{}[]()\"'\\";
+    for (let char of s) {
+      if (value.includes(char)) {
+        return false;
+      }
+    }
+    return true;
+  }
   AddusOfferus() {
     let selected_typ = this.typy[Number(this.typid)];
     this.creator = this.selected.id;
@@ -203,7 +212,7 @@ export class MenusComponent implements OnInit {
       alert("Wybierz jeden typ");
       return;
     }
-    if (!this.VerifyValue(this.nazwa) || !this.VerifyValue(this.miejsce) || !this.VerifyValue(this.opisus) || !this.VerifyValue(this.picurl)) {
+    if (!this.VerifyValue(this.nazwa) || !this.VerifyValue(this.miejsce) || !this.VerifyValue(this.opisus) || this.VerifyPic(this.picurl)) {
       alert("Zabrania się używania znaków specjalnych za wyjątkiem: . , : ? ! /");
       return;
     }
