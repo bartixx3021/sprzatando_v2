@@ -1,3 +1,4 @@
+var crypto = require("crypto")
 var http = require('http');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -9,6 +10,32 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+function detectsql(str) {
+    commands = ['drop ', ' and ', ' or ', 'truncate', 'select ', 'update ', 'insert ', 'alter ' , 'delete ', " ' ", "--"];
+    for (let i = 0; i < commands.length; i++) {
+        if (str.toLocaleLowerCase().includes(commands[i])) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function encryptpass(toencrypt) {
+    const cipher = crypto.createCipher('aes192', toencrypt.toString());
+    let encrypted = cipher.update('some clear text data', 'utf8', 'hex');
+    console.log('encrypted: ' + encrypted);
+    encrypted += cipher.final('hex');
+    console.log('encrypted final: ' + encrypted);
+    return encrypted;
+}
+
+function decryptpass(todecrypt) {
+    const decipher = crypto.createDecipher('aes192', todecrypt);
+    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+    console.log('decrypted: ' + decrypted);
+    return decrypted;
+}
+
 http.createServer( (req, res) => {
     let url = new URL("http://130.162.234.221:8080" + req.url);
     res.writeHead(200, {'Conent-Type' : 'text/html', 'Access-Control-Allow-Origin': '*'});
@@ -16,9 +43,25 @@ http.createServer( (req, res) => {
     //res.end(JSON.stringify({message: "ok"}));
     let action = url.searchParams.get("action");
     let sec = url.searchParams.get("security");
-    if (sec == null) {
+    if (sec == null || detectsql(sec)) {
         res.end(JSON.stringify({message: "Security Breach You are going down MR Roch"}));
         return;
+    }
+    let p = url.searchParams.get("parametry");
+    if (p != null) {
+        if (!detectsql(p)) {
+            try {
+                JSON.parse(p);
+            } catch (e) {
+                console.log(e);
+                res.end(JSON.stringify({message: "Not a proper json"}));
+                return;
+            }
+
+        } else {
+            res.end(JSON.stringify({message: "NO SQL INJECTIONS"}));
+            return;
+        }
     }
     switch (action) {
         case "offer":
@@ -84,6 +127,7 @@ http.createServer( (req, res) => {
             switch (subactb) {
                 case "add":
                     let obj = JSON.parse(url.searchParams.get("parametry"));
+                    //obj.pass = encryptpass(obj.pass);
                     let t = new Date();
                     let x1 = (t.getMonth() + 1).toString();
                     if (x1.length < 2) {
@@ -105,6 +149,11 @@ http.createServer( (req, res) => {
                     let s = [];
                     for (let i = 0; i < tab[0].length; i++) {
                         console.log(typeof(typeof(1)));
+                        /*
+                        if (tab[1][i] == "pass") {
+                            tab[2][i] = encryptpass(tab[2][i]);
+                        }
+                        */
                         if(typeof(tab[1][i]) == "number" || typeof(tab[1][i]) == "boolean") {
                             s.push(`${tab[0][i]} = ${tab[1][i]}`);
                         } else {
@@ -127,7 +176,13 @@ http.createServer( (req, res) => {
                     let u = `SELECT * FROM userus WHERE email = '${objx.mail}' AND pass = '${objx.pass}'`;
                     connection.query(u, function (error, results, fields) {
                         if (error) throw error;
-                        res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
+                        let rx = results;
+                        /*
+                        for (let i = 0; i < rx.length; i++) {
+                            rx[i].pass = decryptpass(rx); 
+                        }
+                        */
+                        res.end(JSON.stringify({type: "user select", comment: "successful", result: rx}));
                       });
                       break;
                 case "select":
@@ -135,7 +190,13 @@ http.createServer( (req, res) => {
                     let uu = `SELECT * FROM userus`;
                     connection.query(uu, function (error, results, fields) {
                         if (error) throw error;
-                        res.end(JSON.stringify({type: "user select", comment: "successful", result: results}));
+                        let rx = results;
+                        /*
+                        for (let i = 0; i < rx.length; i++) {
+                            rx[i].pass = decryptpass(rx); 
+                        }
+                        */
+                        res.end(JSON.stringify({type: "user select", comment: "successful", result: rx}));
                       });
                       break;
                 case "delete":

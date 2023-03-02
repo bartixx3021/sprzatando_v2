@@ -129,7 +129,7 @@ export class MenusComponent implements OnInit {
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       console.log(ans);
-      this.router.navigateByUrl( `menus/:${this.new_email}`);
+      this.router.navigateByUrl( `loginus`);
     })
   }
 
@@ -181,10 +181,33 @@ export class MenusComponent implements OnInit {
   picurl = "";
   stylus = `{}`;
   typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
+  VerifyValue(value :string) {
+    let s = "<>{}[]()\"';\\=+-_^&|*^%$#@`~";
+    for (let char of s) {
+      if (value.includes(char)) {
+        return false;
+      }
+    }
+    return true;
+  }
   AddusOfferus() {
     let selected_typ = this.typy[Number(this.typid)];
     this.creator = this.selected.id;
     console.log(this.creator);
+
+    if (this.nazwa == "" || this.creator == 0 || this.miejsce == "" || this.stawka == "" || this.opisus == "" || this.od_kiedy == "" || this.do_kiedy == "") {
+        alert("Żadne z pól nie może być puste. Za wyjątkiem zdjęcia");
+        return;
+    }
+    if (this.typid == "") {
+      alert("Wybierz jeden typ");
+      return;
+    }
+    if (!this.VerifyValue(this.nazwa) || !this.VerifyValue(this.miejsce) || !this.VerifyValue(this.opisus) || !this.VerifyValue(this.picurl)) {
+      alert("Zabrania się używania znaków specjalnych za wyjątkiem: . , : ? ! /");
+      return;
+    }
+
     let odod = new Date(this.od_kiedy);
     let dodo = new Date(this.do_kiedy);
     let od_str = `${odod.getFullYear()}-${odod.getMonth() +1}-${odod.getDate()}`;
