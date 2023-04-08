@@ -42,6 +42,9 @@
             <div class="klikus py-3 mb-1" *ngIf="selected.is_search" (click)="ChangusStrony(3)" id="cztery">
                 <p class="fs-4 ms-3">Moje zgłoszenia</p>
             </div>
+            <div class="klikus py-3 mb-1" *ngIf="selected.is_admin" (click)="ChangusStrony(4)" id="pinc">
+                <p class="fs-4 ms-3">Admin panel</p>
+            </div>
         </div>
     </div>
     
@@ -282,7 +285,24 @@
             </div>
 
 
-
+            <div class="col-md-12 col-lg-10 col-xxl-8" *ngIf="listastron[4]">
+                <h1 class="bold text-center mt-3">Panel Admina</h1>
+                <div *ngFor="let of of displayed; index as i;" class="offer_card d-flex flex-column flex-md-row" href="#/loginus">
+                    <div *ngIf="of.is_reported_speech">
+                    <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                        <div class="img_div" style="background: url('{{of.img}}'); background-position: center; background-size: cover"></div>
+                    </div>
+                    <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                        <h2 class="bold fs-3 mt-3">{{of.nazwa}}</h2>
+                        
+                    </div>
+                    <button class="bold bat py-2 px-3 fs-5">Banuj</button>
+                    </div>
+                </div>
+                <div class="stoprocentus d-flex justify-content-center mt-3">
+                    <button class="bold bat py-2 px-3 fs-5">Banuj</button>
+                </div>
+            </div>
 
 
 

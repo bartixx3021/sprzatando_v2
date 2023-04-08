@@ -14,7 +14,14 @@ export class MenusComponent implements OnInit {
   users :any[] = [];
   selected :any = {};
   pazz = "";
+  displayed :any[] = [];
   ngOnInit(): void {
+    let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.displayed = ans.result.reverse();
+    })
     //console.log(id.replace(":", ""));
     //this.data = JSON.parse(this.ImageSorter(id.replace(":", "")));
     /**
@@ -155,11 +162,12 @@ export class MenusComponent implements OnInit {
   stronaStworzOferta = false; //1
   stronaMojeOferty = false; //2
   stronaMojeZglo = false; //3
+  stronaAdminus = false; //4
 
   last = 0;
 
-  listastron = [this.stronaProfil,this.stronaStworzOferta,this.stronaMojeOferty,this.stronaMojeZglo];
-  listaCss = ["jeden","dwa","czy","cztery"]
+  listastron = [this.stronaProfil,this.stronaStworzOferta,this.stronaMojeOferty,this.stronaMojeZglo, this.stronaAdminus];
+  listaCss = ["jeden","dwa","czy","cztery", "pinc"]
   ChangusStrony(ktura: number){
     this.listastron[this.last] = !this.listastron[this.last];
     this.listastron[ktura] = !this.listastron[ktura];
@@ -182,7 +190,7 @@ export class MenusComponent implements OnInit {
   stylus = `{}`;
   typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
   VerifyValue(value :string) {
-    let s = "<>{}[]()\"';\\=+-_^&|*^%$#@`~";
+    let s = "<>{}[]()\"';\\=+_^&|*^%$#@`~";
     for (let char of s) {
       if (value.includes(char)) {
         return false;
@@ -212,10 +220,12 @@ export class MenusComponent implements OnInit {
       alert("Wybierz jeden typ");
       return;
     }
+    /*
     if (!this.VerifyValue(this.nazwa) || !this.VerifyValue(this.miejsce) || !this.VerifyValue(this.opisus) || this.VerifyPic(this.picurl)) {
       alert("Zabrania się używania znaków specjalnych za wyjątkiem: . , : ? ! /");
       return;
     }
+    */
 
     let odod = new Date(this.od_kiedy);
     let dodo = new Date(this.do_kiedy);
