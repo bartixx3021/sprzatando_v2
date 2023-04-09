@@ -16,6 +16,7 @@ export class MenusComponent implements OnInit {
   pazz = "";
   displayed :any[] = [];
   ngOnInit(): void {
+    console.log(this.ReadCookie());
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
@@ -45,6 +46,17 @@ export class MenusComponent implements OnInit {
       this.pazz += "*";
     }
   }
+  ReadCookie() {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+      const [name, value] = cookie.split("=");
+      if (name === "logged") {
+        return value;
+      }
+    }
+    return "-1";
+  }
+
   GetUsers() {
     let url = "http://130.162.234.221:8080?action=user&subact=select&security=ezzz&parametry=" + JSON.stringify({message: "ok"});
     fetch(url).then(stream => stream.json()).then(jsonData => {

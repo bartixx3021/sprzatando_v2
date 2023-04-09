@@ -31,6 +31,7 @@ export class LoginusComponent implements OnInit {
         console.log(x);
         let ob = {id : x.id, name: x.name, img: this.ImageSorter(x.img)};
         console.log(JSON.stringify(ob));
+        document.cookie = `logged=${x.id}`;
         this.router.navigateByUrl( `menus/:${ans.result[0].email}`);
       }
     })
