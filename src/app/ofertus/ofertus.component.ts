@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { count, of } from 'rxjs';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-ofertus',
   templateUrl: './ofertus.component.html',
@@ -8,7 +7,7 @@ import { count, of } from 'rxjs';
 })
 export class OfertusComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
   oferty: any = [];
   displayed :any[] = [];
   miasta :string[] = ["Obojętnie"];
@@ -29,7 +28,11 @@ export class OfertusComponent implements OnInit {
     })
     
   }
-
+  Goto(i : number) {
+    let x = this.oferty[i];
+    let obj = JSON.stringify({nr :x.id})
+    this.router.navigateByUrl(`ofertuspodgladus/:${obj}`);
+  }
   SetFilters() {
     for (let x = 0; x < this.oferty.length; x++) {
       let m  = String(this.oferty[x].location);

@@ -6,6 +6,7 @@ import { MenusComponent } from './menus/menus.component';
 import { OfertusComponent } from './ofertus/ofertus.component';
 import { RegistrusComponent } from './registrus/registrus.component';
 import { TestusComponent } from './testus/testus.component';
+import { OfertuspodgladusComponent } from './ofertuspodgladus/ofertuspodgladus.component';
 
 const routes: Routes = [
   {path: "homus", component: HomusComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "registrus", component: RegistrusComponent},
   {path: "testus", component: TestusComponent},
   {path: "menus/:datus", component: MenusComponent},
+  {path: "ofertuspodgladus/:idus", component: OfertuspodgladusComponent},
   {path: "**", component: HomusComponent}
 ];
 

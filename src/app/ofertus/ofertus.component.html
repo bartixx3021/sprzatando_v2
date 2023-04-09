@@ -170,7 +170,7 @@
             ==========================================
         -->
 
-        <a *ngFor="let of of displayed; index as i;" class="offer_card d-flex flex-column flex-md-row" href="#/loginus">
+        <a *ngFor="let of of displayed; index as i;" class="offer_card d-flex flex-column flex-md-row" (click)="Goto(i)">
             <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
                 <div class="img_div" style="background: url('{{of.img}}'); background-position: center; background-size: cover"></div>
             </div>
