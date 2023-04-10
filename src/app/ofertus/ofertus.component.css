@@ -141,4 +141,7 @@
     color: hsla(0, 0%, 0%, 0.75);
 }
 
+a:hover{
+    cursor: pointer
+}
 

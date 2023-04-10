@@ -158,3 +158,81 @@
     color: hsla(0, 0%, 38%, 0.4);
 
 }
+.showcase {
+    overflow: auto; /*..will introduce scroll bar when needed..*/
+    height: 100vh;
+    color:black;
+}
+.offerus_w{
+    width: 100%;
+}
+.offer_card{
+    width: 100%;
+    border-top: solid 1px hsla(0, 0%, 0%, 0.25);
+    border-bottom: solid 1px hsla(0, 0%, 0%, 0.25);
+    min-height: 200px;
+    text-decoration: none;
+    color:black;
+}
+
+.card_img_container{
+    min-height: 200px;
+    margin-right: 37.5px;
+    margin-left: 37.5px;
+}
+.img_div{
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+}
+
+.dropdown-menu {
+    border:none
+}
+
+.bat_b {
+    background-color: #AD0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.bat_b:hover{
+    transition: 0.25s;
+    background-color: #ff3737;
+    color: white;
+}
+
+.bat_ok {
+    background-color: #0e7a20;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.bat_ok:hover{
+    transition: 0.25s;
+    background-color: #0a9521;
+    color: white;
+}
+
+.button_wrapper{
+    height: 100%;
+}
+
+.batonik {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    min-width: 20%;
+    transition: 0.25s;
+}
+
+.batonik:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
+}

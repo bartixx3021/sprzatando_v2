@@ -337,4 +337,10 @@ export class MenusComponent implements OnInit {
     this.picurl = String(value);
     this.stylus = `{'backgroud-image' : '${this.picurl}'}`;
   }
+
+  showusZgloszonus = false
+
+  chagnusShowus(){
+    this.showusZgloszonus = !this.showusZgloszonus
+  }
 }

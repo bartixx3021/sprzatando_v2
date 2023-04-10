@@ -1,4 +1,137 @@
-img {
-    height: 100px;
-    width: 100px;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+.mainek{
+    max-height: 100vh;
+}
+.addi{
+    max-height: 100vh;
+}
+
+.leftcenter{
+    width: 100%;
+}
+.bold{
+    font-weight: bold;
+}
+
+.imgcon{
+    height: max(20vh,250px);
+    width: max(27%,250px);
+    position: relative;
+    padding-bottom:27%;
+    border-radius: 10px;
+    object-fit: cover;
+
+}
+
+.imgconik{
+    height: 300px;
+    min-height: 200px;
+    object-fit: cover;
+}
+.img_divik{
+    width: 100%;
+    max-width: 45rem;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    
+}
+
+.tw1{
+    width: 80%;
+}
+.opisek{
+    width: 80%;
+}
+
+.bat {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    min-width: 50%;
+    transition: 0.25s;
+}
+
+.bat:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
+}
+
+.bat_r {
+    background-color: #AD0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    min-width: 50%;
+    transition: 0.25s;
+}
+
+.bat_r:hover{
+    transition: 0.25s;
+    background-color: #ff3737;
+}
+
+.bat_e {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    min-width: 25%;
+    transition: 0.25s;
+}
+
+.bat_e:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black
+}
+
+.zbior_wyk {
+    width: 90%;
+}
+
+.karta_wyk{
+    background-color: rgba(0, 0, 0, 0.075);
+    border-radius: 10px;
+}
+
+.card_img_container{
+    min-height: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.img_div{
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+}
+
+.inpucik {
+    outline: none;
+    border-style: none;
+    border-bottom: solid 1px hsla(0, 0%, 38%, 0.5);
+    background-color: rgba(0, 0, 0, 0.075);
+    border-radius: 10px;
+    max-width: 80vw;
+}
+
+.inpucik::placeholder{
+    color: hsla(0, 0%, 38%, 0.5);
+    
+}
+
+.form-control{
+    height: 15vh;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+label {
+    color: hsla(0, 0%, 38%, 0.5);
 }

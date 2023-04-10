@@ -108,4 +108,50 @@ export class OfertuspodgladusComponent implements OnInit {
     return "-1";
   }
   
+
+
+  przykladus = {
+    tytulus: "Grzesio",
+    creatus: "Pukasus Grzegosus",
+    datus: "10/04/2023",
+    lokalizacjus: "Opolus Piwnicus",
+    stawkus: "Darmo/h",
+    opisus: "Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P",
+    obrazus: "assets/login_bg.png"
+  }
+
+  profilus = {
+    imgus: "assets/login_bg.png",
+    imienius: "GrzesioPL 2137",
+    idkus: 12
+  }
+  profilus2 = {
+    imgus: "assets/pfptest.png",
+    imienius: "Siusiak 420",
+    idkus: 13
+  }
+
+  arrajus = [this.profilus,this.profilus2]  
+  
+
+  // Masz tu do patrzenia roznych widoków
+
+  isCreatus = true
+  isZalogowanus = true
+  isAdminus = false
+
+  edytus = false
+
+
+
+
+  edited_title = this.przykladus.tytulus
+  edited_date = this.przykladus.datus
+  edited_localization = this.przykladus.lokalizacjus
+  edited_salary = this.przykladus.stawkus
+  edited_description = this.przykladus.opisus
+
+  changusEdytus(){
+    this.edytus = !this.edytus
+  }
 }

@@ -1,6 +1,74 @@
-<p>ofertuspodgladus works!</p>
+<!-- <p>ofertuspodgladus works!</p>
 <img src="{{selected.img}}">
 <div *ngIf="con">
     <button *ngIf="condition == false" (click)="Klikus()">Zgłoś siem</button>
     <button *ngIf="condition">Odzgłoś się</button>
+</div> -->
+<div class="row wrap">
+    <div class="mainek col-lg-8 col-xl-8 col-xxl-9 d-flex justify-content-center overflow-auto">
+        <div class="leftcenter d-flex flex-column align-items-center">
+            <h2 class="fs-1 bold text-center mb-5 pt-4"><span *ngIf="!edytus">{{przykladus.tytulus}} </span><span *ngIf="edytus"><input type="text" class="inpucik ps-2 py-2 fs-1 bold" placeholder="Tytuł" [(ngModel)]="edited_title"></span></h2>
+            <div class="imgconik d-flex align-items-center justify-content-center mw-250">
+
+                <img src="{{selected.img}}" alt="" class="img_divik"> <!-- <===== Zdjęcie -->
+            </div>
+            <button *ngIf="edytus" class="bat_e bold px-5 py-2 fs-4 mt-4 text-center">Zmień zdjęcie</button>
+
+            <div class="row tw1 mt-5">
+                <p class="col-12 col-sm-6 text-start fs-4 mt-2 mt-sm-0"><span class="bold">Twórca:</span> {{przykladus.creatus}}</p> <!-- <===== Twórca -->
+                <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Data:</span> <span *ngIf="!edytus">{{przykladus.datus}}</span> <span *ngIf="edytus"><input type="date" class="inpucik ps-2 fs-5 py-1" placeholder="Do kiedy" [(ngModel)]="edited_date"></span></p> <!-- <===== Data do kiedy -->
+            </div>
+
+            <div class="row tw1 mt-sm-4">
+                <p class="col-12 col-sm-6 text-sm-start fs-4 mt-2 mt-sm-0"><span class="bold">Lokalizacja:</span> <span *ngIf="!edytus">{{przykladus.lokalizacjus}}</span><span *ngIf="edytus"><input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Lokalizacja" [(ngModel)]="edited_localization"></span></p> <!-- <===== Loklizacja -->
+                <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Stawka:</span> <span *ngIf="!edytus">{{przykladus.stawkus}}</span> <span *ngIf="edytus"> <input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Stawka" [(ngModel)]="edited_salary"></span></p> <!-- <===== Stawka -->
+            </div>
+            <div class="opisek mt-4">
+                <h2 class="fs-1 bold text-center">Opis</h2>
+
+                <p *ngIf="!edytus" class="fs-5 text-center my-3">{{przykladus.opisus}}</p> <!-- <===== Opis -->
+                <div *ngIf="edytus" class="form-floating mt-5">
+                    <textarea class="form-control fs-6" placeholder="Opis" id="Opis" [(ngModel)]="edited_description"></textarea>
+                    <label for="Opis" class="fs-5 labelek">Opis oferty</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 
+        ===========================================================
+                                    PRAWA STRONA 
+        ===========================================================
+    -->
+
+    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto">
+        <h2 class="fs-1 bold mt-4 text-center">Działania</h2>
+
+        <button *ngIf="isZalogowanus && !isCreatus && !isAdminus" class="bat bold px-5 py-2 fs-4 mt-4 text-center">Zgłoś się</button>
+
+        <p *ngIf="!isZalogowanus" class="fs-5 mt-4 text-center">Zaloguj się aby móc zgłosić się do oferty!</p>
+
+        <button *ngIf="isZalogowanus && !isCreatus && !isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Zreportuj</button>
+
+        <button *ngIf="isCreatus && !isAdminus && !edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Edytuj</button>  
+        <button *ngIf="isCreatus && !isAdminus && edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Zapisz</button>    
+
+        <button *ngIf="isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Bana masz</button>
+
+        <div *ngIf="isCreatus && !isAdminus" class="d-flex flex-column align-items-center">
+            <h2 class="bold mt-5 text-center fs-2">Zgłoszeni do wykonania</h2>
+
+            <div class="zbior_wyk">
+
+                <div *ngFor="let p of arrajus" class="karta_wyk mt-4 mb-2">
+                    <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                        <div class="img_div" style="background: url({{p.imgus}}); background-position: center; background-size: cover"></div>
+                    </div>
+                    <p class="bold text-center fs-5 pb-2">{{p.imienius}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
