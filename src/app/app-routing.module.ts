@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: "ofertus", component: OfertusComponent},
   {path: "registrus", component: RegistrusComponent},
   {path: "testus", component: TestusComponent},
-  {path: "menus/:datus", component: MenusComponent},
+  {path: "menus", component: MenusComponent},
   {path: "ofertuspodgladus/:idus", component: OfertuspodgladusComponent},
   {path: "**", component: HomusComponent}
 ];

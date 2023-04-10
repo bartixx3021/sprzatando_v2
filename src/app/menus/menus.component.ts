@@ -15,6 +15,7 @@ export class MenusComponent implements OnInit {
   selected :any = {};
   pazz = "";
   displayed :any[] = [];
+  cookz = false;
   ngOnInit(): void {
     console.log(this.ReadCookie());
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
@@ -35,7 +36,7 @@ export class MenusComponent implements OnInit {
 
   FindUser(mail : string) {
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].email == mail) {
+      if (this.users[i].id == mail) {
         return this.users[i];
       }
     }
@@ -51,12 +52,15 @@ export class MenusComponent implements OnInit {
     for (const cookie of cookies) {
       const [name, value] = cookie.split("=");
       if (name === "logged") {
+        this.cookz = true;
         return value;
       }
     }
     return "-1";
   }
-
+  Destroy() {
+    document.cookie = "logged=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
   GetUsers() {
     let url = "http://130.162.234.221:8080?action=user&subact=select&security=ezzz&parametry=" + JSON.stringify({message: "ok"});
     fetch(url).then(stream => stream.json()).then(jsonData => {
@@ -64,15 +68,16 @@ export class MenusComponent implements OnInit {
       //console.log(ans);
       this.users = ans.result;
       //console.log(this.users);
-      let id : any  = this.route.snapshot.paramMap.get('datus')?.toString();
+      let id : any  = this.ReadCookie();
       //console.log(id.replace(":", ""));
-      this.selected = this.FindUser(id.replace(":", ""));
+      this.selected = this.FindUser(id);
       //console.log(this.selected);
       this.image = this.selected.img;
       this.CreatePass(this.selected.pass.length);
     })
   }
 
+  
   ImageSorter(iput : string) {
     let input = iput.replace("DWUKROPER", ":");
     while (input.includes("SLASH") || input.includes("DWUKROPEK")) {

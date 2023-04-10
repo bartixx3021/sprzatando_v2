@@ -1,3 +1,6 @@
 <p>ofertuspodgladus works!</p>
 <img src="{{selected.img}}">
-<button (click)="Klikus()">Zgłoś siem</button>
+<div *ngIf="con">
+    <button *ngIf="condition == false" (click)="Klikus()">Zgłoś siem</button>
+    <button *ngIf="condition">Odzgłoś się</button>
+</div>
