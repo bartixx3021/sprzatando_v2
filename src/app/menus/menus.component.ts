@@ -41,7 +41,7 @@ export class MenusComponent implements OnInit {
       }
     }
   }
-  CreatePass(ln : Number) {
+  CreatePass(ln : number) {
     this.pazz = "";
     for (let i = 0; i < ln; i++) {
       this.pazz += "*";
@@ -74,6 +74,7 @@ export class MenusComponent implements OnInit {
       //console.log(this.selected);
       this.image = this.selected.img;
       this.CreatePass(this.selected.pass.length);
+      this.GetOffer();
     })
   }
 
@@ -194,6 +195,42 @@ export class MenusComponent implements OnInit {
     this.last = ktura;
   }
   
+
+  // WYŚWIETL MOJE ZGŁOSZENIA
+  oferty :any[] = [];
+  pendinglist :any[] = [];
+  GetOffer() {
+    let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.oferty = ans.result;
+      this.PendingSearch();
+      //this.ChosenSearch();
+    })
+  }
+  PendingSearch() {
+    for (let oferta of this.oferty) {
+      let lista = JSON.parse(oferta.volunteer);
+      //console.log(lista);
+      if (lista.includes(this.selected.id.toString())) {
+        this.pendinglist.push(oferta);
+      }
+    }
+    //console.log(this.pendinglist);
+  }
+  chosenlist :any[] = [];
+  ChosenSearch() {
+    for (let oferta of this.oferty) {
+      let lista = oferta.chosen;
+      //console.log(lista);
+      if (lista == this.selected.id) {
+        this.chosenlist.push(oferta);
+      }
+    }
+    //console.log(this.pendinglist);
+  }
+
   // TWORZENIE OFERT
   nazwa = "";
   creator = this.selected.id;
@@ -290,7 +327,7 @@ export class MenusComponent implements OnInit {
       this.picurl = "";
       this.stylus = `{}`;
       this.ChangusStrony(0);
-      this.router.navigateByUrl( `menus/:${this.selected.email}`);
+      this.router.navigateByUrl( `menus/`);
     })
     
   }

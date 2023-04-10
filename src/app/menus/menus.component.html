@@ -283,7 +283,17 @@
 
 
             </div>
-
+            <div class="col-md-12 col-lg-10 col-xxl-8" *ngIf="listastron[3]">
+                <h1 class="bold text-center mt-3">Oczekujące</h1>
+                <div class="dano_zmieniaczus px-0 px-sm-2 px-xl-3 mb-2 pb-2" *ngFor="let p of pendinglist; index as i">
+                    <div>{{p.nazwa}}</div>
+                </div>
+                <hr>
+                <h1 class="bold text-center mt-3">Wybrany</h1>
+                <div class="dano_zmieniaczus px-0 px-sm-2 px-xl-3 mb-2 pb-2" *ngFor="let c of chosenlist; index as i">
+                    <div>{{c.nazwa}}</div>
+                </div>
+            </div>
 
             <div class="col-md-12 col-lg-10 col-xxl-8" *ngIf="listastron[4]">
                 <h1 class="bold text-center mt-3">Panel Admina</h1>

@@ -37,6 +37,7 @@ export class OfertuspodgladusComponent implements OnInit {
       if (this.ReadCookie() == this.selected.creator_id) {
         this.con = false;
       }
+      
     })
     if (this.ReadCookie() != "-1") {
       this.val = true;
