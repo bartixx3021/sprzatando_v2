@@ -343,4 +343,14 @@ export class MenusComponent implements OnInit {
   chagnusShowus(){
     this.showusZgloszonus = !this.showusZgloszonus
   }
+
+  testowyOczek = {
+    img: "assets/login_bg.png",
+    nazwa: "Testowe Ogłoszenie",
+    location: "Piwnica starego",
+    stawka: 12,
+    opisus: "Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P Bartłomiej P",
+    do_kiedus: "jutro"
+  }
+  pedilist = [this.testowyOczek,this.testowyOczek,this.testowyOczek,this.testowyOczek,this.testowyOczek,this.testowyOczek,this.testowyOczek,]
 }

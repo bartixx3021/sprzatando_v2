@@ -160,7 +160,7 @@
 }
 .showcase {
     overflow: auto; /*..will introduce scroll bar when needed..*/
-    height: 100vh;
+    max-height: 100vh;
     color:black;
 }
 .offerus_w{
