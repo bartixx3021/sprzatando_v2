@@ -205,9 +205,6 @@ label {
 }
 
 
-.last_zlec_img_wrap{
-
-}
 
 .img_last_zlec{
     height: 4.5rem;
@@ -248,28 +245,3 @@ label {
 .wyjscie:hover{
     cursor:pointer
 }
-/* .card_img_container{
-    min-height: 150px;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-.img_div{
-    height: 125px;
-    width: 125px;
-    border-radius: 50%;
-} */
-
-
-/* .imgconik{
-    height: 300px;
-    min-height: 200px;
-    object-fit: cover;
-}
-.img_divik{
-    width: 100%;
-    max-width: 45rem;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    
-} */

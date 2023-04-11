@@ -5,6 +5,13 @@
     <button *ngIf="condition">Odzgłoś się</button>
 </div> -->
 <div class="row wrap">
+
+
+    <!-- 
+        ===========================================================
+                                    LEWA STRONA (OFERTA) 
+        ===========================================================
+    -->
     <div class="mainek col-lg-8 col-xl-8 col-xxl-9 d-flex justify-content-center overflow-auto">
         <div class="leftcenter d-flex flex-column align-items-center">
             <h2 class="fs-1 bold text-center mb-5 pt-4"><span *ngIf="!edytus">{{przykladus.tytulus}} </span> <!-- <===== Tytuł -->
@@ -45,9 +52,9 @@
 
 
     <!-- 
-        ===========================================================
-                                    PRAWA STRONA 
-        ===========================================================
+        ==================================================================
+                                    PRAWA STRONA (DZIAŁANIA I ZGŁOSZENI)
+        ==================================================================
     -->
 
     <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto">
@@ -71,25 +78,34 @@
 
                 <div *ngFor="let p of arrajus; index as i" class="karta_wyk mt-4 mb-2">
                     <div class="card_img_container d-flex align-items-center justify-content-center mw-250" (click)="showProfilus(i)">
-                        <div class="img_div" style="background: url({{p.imgus}}); background-position: center; background-size: cover"></div>
+                        <div class="img_div" style="background: url({{p.imgus}}); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
                     </div>
-                    <p class="bold text-center fs-5 pb-2">{{p.imienius}}</p>
+                    <p class="bold text-center fs-5 pb-2">{{p.imienius}}</p> <!-- <===== Imie profilu -->
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+
+
+
+    <!-- 
+        ===========================================================
+                                    KARTA PROFILU 
+        ===========================================================
+    -->
+
 <div *ngIf="isWybranus" class="profil_wrapper d-flex justify-content-center align-items-center">
     <p class="fs-1 bold wyjscie mt-3 me-4" (click)="closeProfilus()">X</p>
     <div class="prof_card">
         <div class="prof_card_r text-center">
             <div class="img_prof_wrap d-flex align-items-center justify-content-center">
-                <div class="img_prof mt-4" style="background: url({{wybranus.imgus}}); background-position: center; background-size: cover"></div>
+                <div class="img_prof mt-4" style="background: url({{wybranus.imgus}}); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
             </div>
-            <h2 class="bold fs-2 mt-4">{{wybranus.imienius}}</h2>
+            <h2 class="bold fs-2 mt-4">{{wybranus.imienius}}</h2> <!-- <===== Imie profilu -->
 
-            <p class="mt-3 fs-5">Średnia gwiazdek: <span class="gwiazdki">{{wybranus.gwiazdkus}}</span></p>
+            <p class="mt-3 fs-5">Średnia gwiazdek: <span class="gwiazdki">{{wybranus.gwiazdkus}}</span></p> <!-- <===== średnia gwiazdek -->
 
             <div class="last_zlec">
                 <h3 class="fs-5 bold mt-3">Ostatnie zlecenie:</h3>
@@ -98,12 +114,12 @@
                         <div class="img_last_zlec" style="background: url('assets/login_bg.png'); background-position: center; background-size: cover"></div>
                     </div>
                     <div class="row dzialaj mx-2 mb-1">
-                        <p class="fs-5 bold col-12 text-start">Tytuł zlecenia</p>
-                        <p class="opis_zlecenia fs-6 col-12 text-start">Jest troche szurnięty HHAHAHHAHAHAHA lolol xddd</p>
+                        <p class="fs-5 bold col-12 text-start">Tytuł zlecenia</p> <!-- <===== Tytuł ostatniego zlecenia -->
+                        <p class="opis_zlecenia fs-6 col-12 text-start">Jest troche szurnięty HHAHAHHAHAHAHA lolol xddd</p><!-- <===== Opis ostatniego zlecenia -->
                     </div>
                 </div>
             </div>
-            <button class="bat_zat mt-4 py-2 px-2 fs-5 bold">Zatrudnij</button>
+            <button class="bat_zat mt-4 py-2 px-2 fs-5 bold">Zatrudnij</button> <!-- <===== Zatrudnij przycisk -->
         </div>
     </div>
     
