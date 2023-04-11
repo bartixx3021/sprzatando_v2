@@ -135,3 +135,141 @@
 label {
     color: hsla(0, 0%, 38%, 0.5);
 }
+
+.karta_wyk:hover{
+    cursor: pointer;
+}
+
+.profil_wrapper{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.prof_card{
+    width: 30rem;
+    max-width: 100vw;
+    height: 40rem;
+    max-height: 80vh;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.prof_card_r{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.img_prof_wrap{
+
+}
+
+.img_prof {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    
+}
+
+.gwiazdki {
+    color:yellow
+}
+
+.bat_zat {
+    background-color: #0A4F9D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    min-width: 50%;
+    transition: 0.25s;
+}
+
+.bat_zat:hover{
+    transition: 0.25s;
+    background-color: #88EAFF;
+    color: black;
+}
+
+.zlec_wrapper{
+    width: 100%;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
+
+.zlec_wrapper:hover{
+    cursor: pointer;
+}
+
+
+.last_zlec_img_wrap{
+
+}
+
+.img_last_zlec{
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+}
+.p_opis_wrapper{
+    width: 100%;
+
+}
+.opis_zlecenia{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    max-width: 20rem;
+}
+
+.dzialaj {
+    width: 100%;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
+
+.last_zlec{
+    width: 100%;
+}
+
+.wyjscie{
+    position: fixed;
+    right: 0;
+    top: 0;
+    color: white
+}
+
+.wyjscie:hover{
+    cursor:pointer
+}
+/* .card_img_container{
+    min-height: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.img_div{
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+} */
+
+
+/* .imgconik{
+    height: 300px;
+    min-height: 200px;
+    object-fit: cover;
+}
+.img_divik{
+    width: 100%;
+    max-width: 45rem;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    
+} */

@@ -123,11 +123,13 @@ export class OfertuspodgladusComponent implements OnInit {
   profilus = {
     imgus: "assets/login_bg.png",
     imienius: "GrzesioPL 2137",
+    gwiazdkus: 4.32,
     idkus: 12
   }
   profilus2 = {
     imgus: "assets/pfptest.png",
     imienius: "Siusiak 420",
+    gwiazdkus: 21.37,
     idkus: 13
   }
 
@@ -153,5 +155,20 @@ export class OfertuspodgladusComponent implements OnInit {
 
   changusEdytus(){
     this.edytus = !this.edytus
+  }
+
+  
+  isWybranus = false
+  wybranus: any
+
+
+  showProfilus(index:number){
+    console.log(index)
+    this.isWybranus = true
+    this.wybranus = this.arrajus[index]
+  }
+
+  closeProfilus(){
+    this.isWybranus = false;
   }
 }

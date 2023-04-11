@@ -35,7 +35,7 @@
                 <h2 class="fs-1 bold text-center">Opis</h2>
 
                 <p *ngIf="!edytus" class="fs-5 text-center my-3">{{przykladus.opisus}}</p> <!-- <===== Opis -->
-                <div *ngIf="edytus" class="form-floating mt-5">
+                <div *ngIf="edytus" class="form-floating my-3">
                     <textarea class="form-control fs-6" placeholder="Opis" id="Opis" [(ngModel)]="edited_description"></textarea> <!-- <===== Opis -->
                     <label for="Opis" class="fs-5 labelek">Opis oferty</label>
                 </div>
@@ -69,8 +69,8 @@
 
             <div class="zbior_wyk">
 
-                <div *ngFor="let p of arrajus" class="karta_wyk mt-4 mb-2">
-                    <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                <div *ngFor="let p of arrajus; index as i" class="karta_wyk mt-4 mb-2">
+                    <div class="card_img_container d-flex align-items-center justify-content-center mw-250" (click)="showProfilus(i)">
                         <div class="img_div" style="background: url({{p.imgus}}); background-position: center; background-size: cover"></div>
                     </div>
                     <p class="bold text-center fs-5 pb-2">{{p.imienius}}</p>
@@ -79,4 +79,32 @@
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="isWybranus" class="profil_wrapper d-flex justify-content-center align-items-center">
+    <p class="fs-1 bold wyjscie mt-3 me-4" (click)="closeProfilus()">X</p>
+    <div class="prof_card">
+        <div class="prof_card_r text-center">
+            <div class="img_prof_wrap d-flex align-items-center justify-content-center">
+                <div class="img_prof mt-4" style="background: url({{wybranus.imgus}}); background-position: center; background-size: cover"></div>
+            </div>
+            <h2 class="bold fs-2 mt-4">{{wybranus.imienius}}</h2>
+
+            <p class="mt-3 fs-5">Średnia gwiazdek: <span class="gwiazdki">{{wybranus.gwiazdkus}}</span></p>
+
+            <div class="last_zlec">
+                <h3 class="fs-5 bold mt-3">Ostatnie zlecenie:</h3>
+                <div class="d-flex zlec_wrapper mt-4">
+                    <div class="last_zlec_img_wrap d-flex align-items-center ms-4 justify-content-center">
+                        <div class="img_last_zlec" style="background: url('assets/login_bg.png'); background-position: center; background-size: cover"></div>
+                    </div>
+                    <div class="row dzialaj mx-2 mb-1">
+                        <p class="fs-5 bold col-12 text-start">Tytuł zlecenia</p>
+                        <p class="opis_zlecenia fs-6 col-12 text-start">Jest troche szurnięty HHAHAHHAHAHAHA lolol xddd</p>
+                    </div>
+                </div>
+            </div>
+            <button class="bat_zat mt-4 py-2 px-2 fs-5 bold">Zatrudnij</button>
+        </div>
+    </div>
+    
 </div>
