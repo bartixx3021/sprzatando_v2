@@ -14,7 +14,7 @@
     -->
     <div class="mainek col-lg-8 col-xl-8 col-xxl-9 d-flex justify-content-center overflow-auto">
         <div class="leftcenter d-flex flex-column align-items-center">
-            <h2 class="fs-1 bold text-center mb-5 pt-4"><span *ngIf="!edytus">{{przykladus.tytulus}} </span> <!-- <===== Tytuł -->
+            <h2 class="fs-1 bold text-center mb-5 pt-4"><span *ngIf="!edytus">{{selected.nazwa}} </span> <!-- <===== Tytuł -->
                 <span *ngIf="edytus"><input type="text" class="inpucik ps-2 py-2 fs-1 bold" placeholder="Tytuł" [(ngModel)]="edited_title"></span></h2> <!-- <===== Tytuł -->
 
             <div class="imgconik d-flex align-items-center justify-content-center mw-250">
@@ -24,24 +24,24 @@
             <button *ngIf="edytus" class="bat_e bold px-5 py-2 fs-4 mt-4 text-center">Zmień zdjęcie</button> <!-- <===== Zmień zdjęcie -->
 
             <div class="row tw1 mt-5">
-                <p class="col-12 col-sm-6 text-start fs-4 mt-2 mt-sm-0"><span class="bold">Twórca:</span> {{przykladus.creatus}}</p> <!-- <===== Twórca -->
+                <p class="col-12 col-sm-6 text-start fs-4 mt-2 mt-sm-0"><span class="bold">Twórca:</span> {{FindUser(selected.creator_id).name}}</p> <!-- <===== Twórca -->
 
-                <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Data:</span> <span *ngIf="!edytus">{{przykladus.datus}}</span> <!-- <===== Data do kiedy -->
+                <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Data:</span> <span *ngIf="!edytus">od {{selected.od_kiedus.split("T")[0]}}   do {{selected.do_kiedus.split("T")[0]}}</span> <!-- <===== Data do kiedy -->
                     <span *ngIf="edytus"><input type="date" class="inpucik ps-2 fs-5 py-1" placeholder="Do kiedy" [(ngModel)]="edited_date"></span></p> <!-- <===== Data do kiedy -->
             </div>
 
             <div class="row tw1 mt-sm-4">
-                <p class="col-12 col-sm-6 text-sm-start fs-4 mt-2 mt-sm-0"><span class="bold">Lokalizacja:</span> <span *ngIf="!edytus">{{przykladus.lokalizacjus}}</span> <!-- <===== Loklizacja -->
+                <p class="col-12 col-sm-6 text-sm-start fs-4 mt-2 mt-sm-0"><span class="bold">Lokalizacja:</span> <span *ngIf="!edytus">{{selected.location}}</span> <!-- <===== Loklizacja -->
                     <span *ngIf="edytus"><input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Lokalizacja" [(ngModel)]="edited_localization"></span></p> <!-- <===== Loklizacja -->
 
-                <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Stawka:</span> <span *ngIf="!edytus">{{przykladus.stawkus}}</span> <!-- <===== Stawka --> 
+                <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Stawka:</span> <span *ngIf="!edytus">{{selected.stawka}}/h</span> <!-- <===== Stawka --> 
                     <span *ngIf="edytus"> <input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Stawka" [(ngModel)]="edited_salary"></span></p> <!-- <===== Stawka -->
 
             </div>
             <div class="opisek mt-4">
                 <h2 class="fs-1 bold text-center">Opis</h2>
 
-                <p *ngIf="!edytus" class="fs-5 text-center my-3">{{przykladus.opisus}}</p> <!-- <===== Opis -->
+                <p *ngIf="!edytus" class="fs-5 text-center my-3">{{selected.opisus}}</p> <!-- <===== Opis -->
                 <div *ngIf="edytus" class="form-floating my-3">
                     <textarea class="form-control fs-6" placeholder="Opis" id="Opis" [(ngModel)]="edited_description"></textarea> <!-- <===== Opis -->
                     <label for="Opis" class="fs-5 labelek">Opis oferty</label>
@@ -57,7 +57,7 @@
         ==================================================================
     -->
 
-    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto">
+    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="selected.creator_id == ReadCookie()">
         <h2 class="fs-1 bold mt-4 text-center">Działania</h2>
 
         <button *ngIf="isZalogowanus && !isCreatus && !isAdminus" class="bat bold px-5 py-2 fs-4 mt-4 text-center">Zgłoś się</button>
@@ -69,7 +69,7 @@
         <button *ngIf="isCreatus && !isAdminus && !edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Edytuj</button>  
         <button *ngIf="isCreatus && !isAdminus && edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Zapisz</button>    
 
-        <button *ngIf="isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Bana masz</button>
+        <!-- <button *ngIf="isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Bana masz</button> -->
 
         <div *ngIf="isCreatus && !isAdminus" class="d-flex flex-column align-items-center">
             <h2 class="bold mt-5 text-center fs-2">Zgłoszeni do wykonania</h2>
@@ -85,6 +85,10 @@
 
             </div>
         </div>
+    </div>
+    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="selected.creator_id != ReadCookie()">
+        <button  class="bat bold px-5 py-2 fs-4 mt-4 text-center">Zgłoś się</button>
+
     </div>
 </div>
 

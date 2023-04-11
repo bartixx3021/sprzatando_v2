@@ -15,6 +15,7 @@ export class OfertuspodgladusComponent implements OnInit {
   condition = false;
   con = true;
   ngOnInit(): void {
+    this.GetUsers();
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
@@ -54,6 +55,24 @@ export class OfertuspodgladusComponent implements OnInit {
     }
   }
 
+  users :any[] = [];
+  selected_user = [];
+  GetUsers() {
+    let url = "http://130.162.234.221:8080?action=user&subact=select&security=ezzz&parametry=" + JSON.stringify({message: "ok"});
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      //console.log(ans);
+      this.users = ans.result;
+    })
+  }
+  FindUser(mail : string) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id == mail) {
+        console.log(this.users[i]);
+        return this.users[i];
+      }
+    }
+  }
   Klikus() {
     if (this.val) {
       console.log("Zgłosił się");
