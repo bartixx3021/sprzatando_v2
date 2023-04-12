@@ -21,6 +21,17 @@ export class HomusComponent implements OnInit {
     })
   }
 
+  ReadCookie() {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+      const [name, value] = cookie.split("=");
+      if (name === "logged") {
+        return value;
+      }
+    }
+    return -1;
+  }
+
 
 
 }

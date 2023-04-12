@@ -60,35 +60,47 @@
     <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="selected.creator_id == ReadCookie()">
         <h2 class="fs-1 bold mt-4 text-center">Działania</h2>
 
-        <button *ngIf="isZalogowanus && !isCreatus && !isAdminus" class="bat bold px-5 py-2 fs-4 mt-4 text-center">Zgłoś się</button>
 
-        <p *ngIf="!isZalogowanus" class="fs-5 mt-4 text-center">Zaloguj się aby móc zgłosić się do oferty!</p>
-
-        <button *ngIf="isZalogowanus && !isCreatus && !isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Zreportuj</button>
-
-        <button *ngIf="isCreatus && !isAdminus && !edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Edytuj</button>  
-        <button *ngIf="isCreatus && !isAdminus && edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Zapisz</button>    
+        <button  class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Edytuj</button>  
+        <button class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Zapisz</button>    
 
         <!-- <button *ngIf="isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Bana masz</button> -->
 
-        <div *ngIf="isCreatus && !isAdminus" class="d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center" *ngIf="vols.length > 0">
             <h2 class="bold mt-5 text-center fs-2">Zgłoszeni do wykonania</h2>
 
             <div class="zbior_wyk">
 
-                <div *ngFor="let p of arrajus; index as i" class="karta_wyk mt-4 mb-2">
+                <div *ngFor="let p of vols; index as i" class="karta_wyk mt-4 mb-2">
                     <div class="card_img_container d-flex align-items-center justify-content-center mw-250" (click)="showProfilus(i)">
-                        <div class="img_div" style="background: url({{p.imgus}}); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
+                        <div class="img_div" style="background: url('assets/login_bg.png'); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
                     </div>
-                    <p class="bold text-center fs-5 pb-2">{{p.imienius}}</p> <!-- <===== Imie profilu -->
+                    <p class="bold text-center fs-5 pb-2">{{p.name}}</p> <!-- <===== Imie profilu -->
+                    <button style="margin: 10px;" (click)="Choose(vols[i].id)">Wybierz</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="d-flex flex-column align-items-center" *ngIf="selected.chosen > -1">
+            <h2 class="bold mt-5 text-center fs-2">Wybrany</h2>
+
+            <div class="zbior_wyk">
+
+                <div class="karta_wyk mt-4 mb-2">
+                    <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                        <div class="img_div" style="background: url('assets/login_bg.png'); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
+                    </div>
+                    <p class="bold text-center fs-5 pb-2">{{FindUser(selected.chosen.toString()).name}}</p> <!-- <===== Imie profilu -->
                 </div>
 
             </div>
         </div>
     </div>
     <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="selected.creator_id != ReadCookie()">
-        <button  class="bat bold px-5 py-2 fs-4 mt-4 text-center">Zgłoś się</button>
-
+        <button  *ngIf="selected.is_blocked == false && condition_zglos == false" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Klikus()">Zgłoś się</button>
+        <button  *ngIf="selected.is_blocked == false && condition_zglos" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Klikus()">Odzgłoś się</button>
+        <p *ngIf="selected.is_blocked">Ogłoszenie zbanowane</p>
+        <button  *ngIf="selected.is_reported_speech == false && selected.is_blocked == false" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center" (click)="Report(selected.id)">Zreportuj</button>
     </div>
 </div>
 

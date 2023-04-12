@@ -38,7 +38,8 @@ export class OfertuspodgladusComponent implements OnInit {
       if (this.ReadCookie() == this.selected.creator_id) {
         this.con = false;
       }
-      
+      this.condition_zglos = JSON.parse(this.selected.volunteer).includes(this.ReadCookie());
+      this.SetUp();
     })
     if (this.ReadCookie() != "-1") {
       this.val = true;
@@ -67,18 +68,23 @@ export class OfertuspodgladusComponent implements OnInit {
   }
   FindUser(mail : string) {
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].id == mail) {
+      if (this.users[i].id == Number(mail)) {
         console.log(this.users[i]);
         return this.users[i];
       }
     }
   }
+  condition_zglos = false;
   Klikus() {
     if (this.val) {
       console.log("Zgłosił się");
       let lista = JSON.parse(this.selected.volunteer);
       let user_id = this.ReadCookie();
-      lista.push(user_id);
+      if (!this.condition_zglos) {
+        lista.push(user_id);
+      } else {
+        lista.splice(lista.indexOf(user_id), 1);
+      }
       let query = [["volunteer"],[JSON.stringify(lista)],this.selected.id];
       console.log(JSON.stringify(query));
       
@@ -88,11 +94,45 @@ export class OfertuspodgladusComponent implements OnInit {
         console.log(ans);
         this.GetOffer();
         this.Checkus();
+        this.router.navigateByUrl("/ofertus")
       });
       
     } else {
       this.router.navigateByUrl("/loginus");
     }
+  }
+  
+  vols :any[] = [];
+  SetUp() {
+    let tmp = JSON.parse(this.selected.volunteer);
+    for (let element of tmp) {
+      this.vols.push(this.FindUser(element));
+    }
+    console.log(this.vols);
+  }
+  Clear_volunteer() {
+    let lista :any[] = [];
+    let query = [["volunteer"],[JSON.stringify(lista)],this.selected.id];
+    console.log(JSON.stringify(query));
+    
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.router.navigateByUrl("/ofertus");
+    });
+  }
+
+  Choose(idx : number) {
+    let query = [["chosen"],[idx],this.selected.id];
+    console.log(JSON.stringify(query));
+    
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.Clear_volunteer();
+    });
   }
 
   GetOffer() {
@@ -189,5 +229,16 @@ export class OfertuspodgladusComponent implements OnInit {
 
   closeProfilus(){
     this.isWybranus = false;
+  }
+
+  report_widoczny = true;
+  Report(idx : number) {
+    let obj :any[]= [["is_reported_speech"], [true], [idx]];
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.router.navigateByUrl( `ofertus/`);
+    })
   }
 }
