@@ -35,6 +35,7 @@ export class OfertuspodgladusComponent implements OnInit {
             this.edited_localization = this.selected.location;
             this.edited_salary = this.selected.stawka;
             this.edited_description = this.selected.opisus;
+            this.edited_url = this.selected.img;
             break;
           }
         }
@@ -218,6 +219,7 @@ export class OfertuspodgladusComponent implements OnInit {
   edited_localization = "";
   edited_salary = 0;
   edited_description = "";
+  edited_url :any = "";
 
   Editus_ogloszenius() {
     let odod = new Date(this.edited_date);
@@ -249,7 +251,7 @@ export class OfertuspodgladusComponent implements OnInit {
       do_str = `${dodo.getFullYear()}-${dodo.getMonth() +1}-0${dodo.getDate()}`
     }
     console.log(do_str);
-    let query = [["nazwa", "location", "stawka"],[this.edited_title, this.edited_localization, this.edited_salary],this.selected.id];
+    let query = [["nazwa", "location", "stawka", "opisus", "od_kiedus", "do_kiedus", "img"],[this.edited_title, this.edited_localization, this.edited_salary, this.edited_description, od_str, do_str, this.edited_url],this.selected.id];
     console.log(JSON.stringify(query));
     let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
     fetch(url).then(stream => stream.json()).then(jsonData => {
@@ -259,7 +261,9 @@ export class OfertuspodgladusComponent implements OnInit {
       //this.Clear_volunteer();
     });
   }
-
+  ChgPhoto() {
+    this.edited_url = prompt("Podaj url nowego zdjęcia: ");
+  }
   changusEdytus(){
     this.edytus = !this.edytus
     this.Editus_ogloszenius();
