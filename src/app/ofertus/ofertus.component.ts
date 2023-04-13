@@ -23,6 +23,9 @@ export class OfertusComponent implements OnInit {
       let ans = jsonData;
       console.log(ans);
       this.oferty = ans.result.reverse();
+      for (let i = 0; i < this.oferty.length; i++) {
+
+      }
       this.displayed = this.oferty;
       this.SetFilters();
     })
@@ -39,9 +42,11 @@ export class OfertusComponent implements OnInit {
       if (!this.miasta.includes(m)) {
         this.miasta.push(m);
       }
-      let t = String(this.oferty[x].typus);
-      if (!this.typusy.includes(t)) {
-        this.typusy.push(t);
+      let t = JSON.parse(this.oferty[x].typus);
+      for (let typ of t) {
+        if (!this.typusy.includes(typ)) {
+          this.typusy.push(typ);
+        }
       }
       let s = Number(this.oferty[x].stawka);
       if (s < this.min) {
@@ -90,7 +95,7 @@ export class OfertusComponent implements OnInit {
         }
       }
       if (this.selected_miasto == "" && this.pointer == 0 && !added) {
-        if (this.oferty[i].typus == this.selected_typus) {
+        if (JSON.parse(this.oferty[i].typus).includes(this.selected_typus)) {
           this.displayed.push(this.oferty[i]);
           added = true;
         }
@@ -107,17 +112,17 @@ export class OfertusComponent implements OnInit {
         }
       }
       if (this.pointer == 0 && !added) {
-        if (this.oferty[i].location == this.selected_miasto && this.oferty[i].typus == this.selected_typus) {
+        if (this.oferty[i].location == this.selected_miasto && JSON.parse(this.oferty[i].typus).includes(this.selected_typus)) {
           this.displayed.push(this.oferty[i]);
         }
       }
       if (this.selected_miasto == "" && !added) {
-        if (this.oferty[i].typus == this.selected_typus && this.oferty[i].stawka >= this.pointer) {
+        if (JSON.parse(this.oferty[i].typus).includes(this.selected_typus) && this.oferty[i].stawka >= this.pointer) {
           this.displayed.push(this.oferty[i]);
         }
       }
       if (this.selected_miasto != "" && this.selected_typus != "" && this.pointer != 0) {
-        if (this.oferty[i].typus == this.selected_typus && this.oferty[i].stawka >= this.pointer && this.oferty[i].location == this.selected_miasto) {
+        if (JSON.parse(this.oferty[i].typus).includes(this.selected_typus) && this.oferty[i].stawka >= this.pointer && this.oferty[i].location == this.selected_miasto) {
           this.displayed.push(this.oferty[i]);
         }
       }
@@ -134,5 +139,8 @@ export class OfertusComponent implements OnInit {
       }
     }
     return -1;
+  }
+  Destroy() {
+    document.cookie = "logged=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
 }

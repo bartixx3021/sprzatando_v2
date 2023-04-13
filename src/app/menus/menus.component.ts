@@ -236,7 +236,7 @@ export class MenusComponent implements OnInit {
       console.log(ans);
       this.oferty = ans.result;
       this.PendingSearch();
-      //this.ChosenSearch();
+      this.ChosenSearch();
     })
   }
   PendingSearch() {
@@ -254,7 +254,7 @@ export class MenusComponent implements OnInit {
     for (let oferta of this.oferty) {
       let lista = oferta.chosen;
       //console.log(lista);
-      if (lista == this.selected.id) {
+      if (Number(lista) == this.selected.id) {
         this.chosenlist.push(oferta);
       }
     }
@@ -274,7 +274,7 @@ export class MenusComponent implements OnInit {
   stylus = `{}`;
   typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
 
-  tmpTypidArray:string[] = []
+  tmpTypidArray: string[] = []
 
   createTypid(event:any){
     if(event.target.checked){
@@ -283,6 +283,7 @@ export class MenusComponent implements OnInit {
     else{
       this.tmpTypidArray.splice(this.tmpTypidArray.indexOf(this.typy[Number(event.target.value)]),1)
     }
+    console.log()
     this.typid = JSON.stringify(this.tmpTypidArray)
     console.log(this.typid)
   }
@@ -308,7 +309,7 @@ export class MenusComponent implements OnInit {
     return true;
   }
   AddusOfferus() {
-    let selected_typ = this.typy[Number(this.typid)];
+    let selected_typ = this.typid;
     this.creator = this.selected.id;
     console.log(this.creator);
 

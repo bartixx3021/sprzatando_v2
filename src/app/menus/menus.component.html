@@ -15,7 +15,7 @@
         <a class="nav-link testy" aria-current="page" href="#/homus">Strona Główna</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link testy" href="#/menus/:{{selected.email}}">Profil</a>
+        <a class="nav-link testy" href="#/menus">Profil</a>
       </li>
       <li class="nav-item mt-4 bold">
         <a class="nav-link sus" href="#" (click)="Destroy()">Wyloguj</a>
@@ -295,24 +295,26 @@
                     <div>{{c.nazwa}}</div>
                 </div> -->
                 <div class="showcase oczek">
-                    <a *ngFor="let c of chosenlist; index as i" class="offer_card d-flex flex-column flex-md-row">
-                        <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
-                            <div class="img_div" style="background: url('{{c.img}}'); background-position: center; background-size: cover"></div>
-                        </div>
-                        <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
-                            <h2 class="bold fs-3 mt-3">{{c.nazwa}}</h2>
-                            <div class="d-flex justify-content-center justify-content-md-start">
-                                <h3 class="fs-5 me-3">{{c.location}}</h3>
-                                <h3 class="fs-5 bold">{{c.stawka}}/h</h3>
+                    <div *ngFor="let c of chosenlist; index as i">
+                        <a *ngIf="c.is_blocked == false" class="offer_card d-flex flex-column flex-md-row">
+                            <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                                <div class="img_div" style="background: url('{{c.img}}'); background-position: center; background-size: cover"></div>
                             </div>
-                            <div class="overflow-hidden aaa me-4">
-                                    <p class="placz m-0 fs-6">
-                                        {{c.opisus}}
-                                    </p>
+                            <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                                <h2 class="bold fs-3 mt-3">{{c.nazwa}}</h2>
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <h3 class="fs-5 me-3">{{c.location}}</h3>
+                                    <h3 class="fs-5 bold">{{c.stawka}}/h</h3>
+                                </div>
+                                <div class="overflow-hidden aaa me-4">
+                                        <p class="placz m-0 fs-6">
+                                            {{c.opisus}}
+                                        </p>
+                                </div>
+                                <p class="mt-1 bok">do {{c.do_kiedus}}</p>
                             </div>
-                            <p class="mt-1 bok">do {{c.do_kiedus}}</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
 
                 <hr>
@@ -325,24 +327,26 @@
 
                 <div class="showcase oczek">
 
-                    <a *ngFor="let p of pendinglist; index as i" class="offer_card d-flex flex-column flex-md-row">
-                        <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
-                            <div class="img_div" style="background: url('{{p.img}}'); background-position: center; background-size: cover"></div>
-                        </div>
-                        <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
-                            <h2 class="bold fs-3 mt-3">{{p.nazwa}}</h2>
-                            <div class="d-flex justify-content-center justify-content-md-start">
-                                <h3 class="fs-5 me-3">{{p.location}}</h3>
-                                <h3 class="fs-5 bold">{{p.stawka}}/h</h3>
+                    <div *ngFor="let p of pendinglist; index as i">
+                        <a *ngIf="p.is_blocked == false"  class="offer_card d-flex flex-column flex-md-row">
+                            <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                                <div class="img_div" style="background: url('{{p.img}}'); background-position: center; background-size: cover"></div>
                             </div>
-                            <div class="overflow-hidden aaa me-4">
-                                    <p class="placz m-0 fs-6">
-                                        {{p.opisus}}
-                                    </p>
+                            <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                                <h2 class="bold fs-3 mt-3">{{p.nazwa}}</h2>
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <h3 class="fs-5 me-3">{{p.location}}</h3>
+                                    <h3 class="fs-5 bold">{{p.stawka}}/h</h3>
+                                </div>
+                                <div class="overflow-hidden aaa me-4">
+                                        <p class="placz m-0 fs-6">
+                                            {{p.opisus}}
+                                        </p>
+                                </div>
+                                <p class="mt-1 bok">do {{p.do_kiedus}}</p>
                             </div>
-                            <p class="mt-1 bok">do {{p.do_kiedus}}</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
 
                 </div>
 
