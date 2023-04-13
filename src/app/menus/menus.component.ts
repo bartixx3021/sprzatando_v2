@@ -176,13 +176,13 @@ export class MenusComponent implements OnInit {
 
 
   // Jak będziesz zmieniał se tu to odrazu "last" zmień na odpowiadający indeks pozdro 600
-  stronaProfil = true; //0
-  stronaStworzOferta = false; //1
+  stronaProfil = false; //0
+  stronaStworzOferta = true; //1
   stronaMojeOferty = false; //2
   stronaMojeZglo = false; //3
   stronaAdminus = false; //4
 
-  last = 0;
+  last = 1;
 
   listastron = [this.stronaProfil,this.stronaStworzOferta,this.stronaMojeOferty,this.stronaMojeZglo, this.stronaAdminus];
   listaCss = ["jeden","dwa","czy","cztery", "pinc"]
@@ -243,6 +243,21 @@ export class MenusComponent implements OnInit {
   picurl = "";
   stylus = `{}`;
   typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
+
+  tmpTypidArray:string[] = []
+  createTypid(event:any){
+    if(event.target.checked){
+      this.tmpTypidArray.push(this.typy[Number(event.target.value)])
+    }
+    else{
+      this.tmpTypidArray.splice(this.tmpTypidArray.indexOf(this.typy[Number(event.target.value)]),1)
+    }
+    this.typid = JSON.stringify(this.tmpTypidArray)
+    console.log(this.typid)
+  }
+
+  
+
   VerifyValue(value :string) {
     let s = "<>{}[]()\"';\\=+_^&|*^%$#@`~";
     for (let char of s) {

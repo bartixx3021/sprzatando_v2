@@ -238,32 +238,31 @@
 
                         <div class="row mt-4 p-0">
                             <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="radio" id="box1" name="typusy" value="0" [(ngModel)]="typid">
+                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box1" name="typusy0" value="0" (change)="createTypid($event)">
                                 <label class="form-check-label fs-6" for="box1">Wywóz Śmieci</label>
                               </div>
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="radio" id="box2" name="typusy" value="1" [(ngModel)]="typid">
+                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box2" name="typusy1" value="1" (change)="createTypid($event)">
                                 <label class="form-check-label fs-6" for="box2">Sprzątanie mieszkania</label>
                               </div>
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="radio" id="box3" name="typusy" value="2" [(ngModel)]="typid">
+                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box3" name="typusy2" value="2" (change)="createTypid($event)">
                                 <label class="form-check-label fs-6" for="box3">Mycie Auta</label>
                               </div>
 
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="radio" id="box4" name="typusy" value="3" [(ngModel)]="typid">
+                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box4" name="typusy3" value="3" (change)="createTypid($event)">
                                 <label class="form-check-label fs-6" for="box4">coś tam</label>
                               </div>
                               <div class="d-flex align-items-cente col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="radio" id="box5" name="typusy" value="4" [(ngModel)]="typid">
+                                <input class="form-check-input fs-6 me-1" type="checkbox" id="box5" name="typusy4" value="4" (change)="createTypid($event)">
                                 <label class="form-check-label fs-6" for="box5">Ciukuluku</label>
                               </div>
                               <div class="d-flex align-items-center col-12 col-md-6 col-lg-4 mt-2">
-                                <input class="form-check-input fs-6 me-1" type="radio" id="box6" name="typusy" value="5" [(ngModel)]="typid">
-                                <input type="text" class="offer_input ps-1 fs-6 w-100" placeholder="inne">
+                                <!-- <input class="form-check-input fs-6 me-1" type="checkbox" id="box6" name="typusy5" value="5" [(ngModel)]="customTypidBool" (change)="createCustomTypid()">
+                                <input type="text" class="offer_input ps-1 fs-6 w-100" placeholder="inne" [(ngModel)]="customTypid"> -->
                               </div>
                         </div>
-
                         <!-- 
                             =====================================
                                         DATUS I SUBMITUS
