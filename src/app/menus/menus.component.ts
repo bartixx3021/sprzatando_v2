@@ -262,6 +262,7 @@ export class MenusComponent implements OnInit {
   }
 
   // TWORZENIE OFERT
+  dzis = new Date();
   nazwa = "";
   creator = this.selected.id;
   miejsce = "";
@@ -275,7 +276,7 @@ export class MenusComponent implements OnInit {
   typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
 
   tmpTypidArray: string[] = []
-
+  
   createTypid(event:any){
     if(event.target.checked){
       this.tmpTypidArray.push(this.typy[Number(event.target.value)])

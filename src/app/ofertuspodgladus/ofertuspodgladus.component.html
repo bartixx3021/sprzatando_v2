@@ -21,13 +21,13 @@
 
                 <img src="{{selected.img}}" alt="" class="img_divik"> <!-- <===== Zdjęcie -->
             </div>
-            <button *ngIf="edytus" class="bat_e bold px-5 py-2 fs-4 mt-4 text-center">Zmień zdjęcie</button> <!-- <===== Zmień zdjęcie -->
+            <button *ngIf="edytus" class="bat_e bold px-5 py-2 fs-4 mt-4 text-center" (click)="ChgPhoto()">Zmień zdjęcie</button> <!-- <===== Zmień zdjęcie -->
 
             <div class="row tw1 mt-5">
                 <p class="col-12 col-sm-6 text-start fs-4 mt-2 mt-sm-0"><span class="bold">Twórca:</span> {{FindUser(selected.creator_id).name}}</p> <!-- <===== Twórca -->
 
                 <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Data:</span> <span *ngIf="!edytus">od {{selected.od_kiedus.split("T")[0]}}   do {{selected.do_kiedus.split("T")[0]}}</span> <!-- <===== Data do kiedy -->
-                    <span *ngIf="edytus"><input type="date" class="inpucik ps-2 fs-5 py-1" placeholder="Do kiedy" [(ngModel)]="edited_date"> do <input type="date" class="inpucik ps-2 fs-5 py-1" placeholder="Do kiedy" [(ngModel)]="edited_datus"></span></p> <!-- <===== Data do kiedy -->
+                    <span *ngIf="edytus"><input type="date" class="inpucik ps-2 fs-5 py-1" placeholder="Od kiedy" [(ngModel)]="edited_date"><input type="date" class="inpucik ps-2 fs-5 py-1" placeholder="Do kiedy" [(ngModel)]="edited_datus"></span></p> <!-- <===== Data do kiedy -->
             </div>
 
             <div class="row tw1 mt-sm-4">
