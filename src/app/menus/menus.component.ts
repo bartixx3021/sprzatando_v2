@@ -273,6 +273,22 @@ export class MenusComponent implements OnInit {
   picurl = "";
   stylus = `{}`;
   typy = ["Wywóz Śmieci", "Sprzątanie mieszkania", "Mycie Auta", "coś tam", "Ciukuluku", ""];
+
+  tmpTypidArray:string[] = []
+
+  createTypid(event:any){
+    if(event.target.checked){
+      this.tmpTypidArray.push(this.typy[Number(event.target.value)])
+    }
+    else{
+      this.tmpTypidArray.splice(this.tmpTypidArray.indexOf(this.typy[Number(event.target.value)]),1)
+    }
+    this.typid = JSON.stringify(this.tmpTypidArray)
+    console.log(this.typid)
+  }
+
+  
+
   VerifyValue(value :string) {
     let s = "<>{}[]()\"';\\=+_^&|*^%$#@`~";
     for (let char of s) {
