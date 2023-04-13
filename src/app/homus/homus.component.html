@@ -21,7 +21,8 @@
 
 
         <!-- <a *ngFor="let of of displayed; index as i;" class="offer_card d-flex flex-column flex-md-row" href="loginus"> -->
-        <a *ngFor="let of of oferty" class="offer_card d-flex flex-column flex-md-row">
+        <div *ngFor="let of of oferty">
+        <a *ngIf="of.is_blocked == false && of.is_active"  class="offer_card d-flex flex-column flex-md-row">
             <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
                 <div class="img_div" style="background: url('{{of.img}}'); background-position: center; background-size: cover"></div>
             </div>                         <!--        /\ /\ /\ OBRAZ /\ /\ /\ 
@@ -40,6 +41,7 @@
                 <p class="mt-1 bok">{{of.do_kiedus}}</p> <!-- <======================= DO KIEDY -->
             </div>
         </a>
+        </div>
 
 
        

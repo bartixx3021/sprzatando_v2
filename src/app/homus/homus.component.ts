@@ -15,8 +15,12 @@ export class HomusComponent implements OnInit {
       let ans = jsonData;
       console.log(ans);
       let x = ans.result.reverse();
-      for (let i = 0; i < 7; i++) {
-        this.oferty.push(x[i]);
+      let i = 0;
+      while (this.oferty.length < 10 && i < x.length) {
+        if (!x[i].is_blocked && x[i].is_active) {
+          this.oferty.push(x[i]);
+        }
+        i++;
       }
     })
   }
