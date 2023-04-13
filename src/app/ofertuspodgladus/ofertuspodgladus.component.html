@@ -100,7 +100,7 @@
         <button  *ngIf="selected.is_blocked == false && condition_zglos == false && selected.chosen == '-1'" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Klikus()">Zgłoś się</button>
         <button  *ngIf="selected.is_blocked == false && condition_zglos && selected.chosen == '-1'" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Klikus()">Odzgłoś się</button>
         <p *ngIf="selected.is_blocked">Ogłoszenie zbanowane</p>
-        <button  *ngIf="selected.is_reported_speech == false && selected.is_blocked == false" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center" (click)="Report(selected.id)">Zreportuj</button>
+        <button  *ngIf="selected.is_reported_speech == false && selected.is_blocked == false && ReadCookie() != '-1'" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center" (click)="Report(selected.id)">Zreportuj</button>
     </div>
 </div>
 
