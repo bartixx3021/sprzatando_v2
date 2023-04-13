@@ -69,7 +69,7 @@ export class OfertuspodgladusComponent implements OnInit {
   FindUser(mail : string) {
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].id == Number(mail)) {
-        // console.log(this.users[i]);
+        console.log(this.users[i]);
         return this.users[i];
       }
     }
@@ -208,7 +208,6 @@ export class OfertuspodgladusComponent implements OnInit {
 
   edited_title = this.przykladus.tytulus
   edited_date = this.przykladus.datus
-  edited_date2 = this.przykladus.datus
   edited_localization = this.przykladus.lokalizacjus
   edited_salary = this.przykladus.stawkus
   edited_description = this.przykladus.opisus
