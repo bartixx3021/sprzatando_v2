@@ -16,6 +16,7 @@ export class MenusComponent implements OnInit {
   pazz = "";
   displayed :any[] = [];
   cookz = false;
+  rep_speech :any[] = [];
   ngOnInit(): void {
     console.log(this.ReadCookie());
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
@@ -23,6 +24,7 @@ export class MenusComponent implements OnInit {
       let ans = jsonData;
       console.log(ans);
       this.displayed = ans.result.reverse();
+      this.Zgloszone();
     })
     //console.log(id.replace(":", ""));
     //this.data = JSON.parse(this.ImageSorter(id.replace(":", "")));
@@ -32,6 +34,34 @@ export class MenusComponent implements OnInit {
     this.image = this.data.img;
     */
     this.GetUsers();
+  }
+  Zgloszone() {
+    this.rep_speech = [];
+    for (let i = 0; i < this.displayed.length; i++) {
+      if (this.displayed[i].is_reported_speech && !this.displayed[i].is_blocked) {
+        console.log(this.displayed[i]);
+        this.rep_speech.push(this.displayed[i]);
+      }
+    }
+    console.log(this.rep_speech);
+  }
+  Banowanie(idx: number) {
+    let obj :any[]= [["is_blocked"], [true], [this.rep_speech[idx].id]];
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      //console.log(ans);
+      this.rep_speech.splice(this.rep_speech[idx], 1);
+    });
+  }
+  Okej(idx : number) {
+    let obj :any[]= [["is_reported_speech"], [false], [this.rep_speech[idx].id]];
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      //console.log(ans);
+      this.rep_speech.splice(this.rep_speech[idx], 1);
+    });
   }
 
   FindUser(mail : string) {

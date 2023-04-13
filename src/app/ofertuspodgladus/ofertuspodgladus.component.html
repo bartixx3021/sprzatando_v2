@@ -61,8 +61,8 @@
         <h2 class="fs-1 bold mt-4 text-center">Działania</h2>
 
 
-        <button  class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Edytuj</button>  
-        <button class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Zapisz</button>    
+        <button *ngIf="!edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Edytuj</button>  
+        <button *ngIf="edytus" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="changusEdytus()">Zapisz</button>    
 
         <!-- <button *ngIf="isAdminus" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center">Bana masz</button> -->
 

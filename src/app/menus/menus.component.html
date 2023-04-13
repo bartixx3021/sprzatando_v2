@@ -381,7 +381,7 @@
                     
                     
                             <!-- <a *ngFor="let of of displayed; index as i;" class="offer_card d-flex flex-column flex-md-row" href="loginus"> -->
-                            <div *ngFor="let of of oferty" class="offer_card d-flex flex-column flex-md-row">
+                            <div *ngFor="let of of rep_speech; index as j" class="offer_card d-flex flex-column flex-md-row">
                                 <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
                                     <div class="img_div" style="background: url('{{of.img}}'); background-position: center; background-size: cover"></div>
                                 </div>                         <!--        /\ /\ /\ OBRAZ /\ /\ /\ 
@@ -400,8 +400,8 @@
                                     <p class="mt-1 bok">{{of.do_kiedus}}</p> <!-- <======================= DO KIEDY -->
                                 </div>
                                 <div class="buttons_wrapper d-flex flex-column align-items-center justify-content-center">
-                                    <button class="bat_b px-4 py-1 fs-5 bold my-2">Ban</button>
-                                    <button class="bat_ok px-4 py-1 fs-5 bold my-2">Jest Ok</button>
+                                    <button class="bat_b px-4 py-1 fs-5 bold my-2" (click)="Banowanie(j)">Ban</button>
+                                    <button class="bat_ok px-4 py-1 fs-5 bold my-2" (click)="Okej(j)">Jest Ok</button>
                                 </div>
                             </div>
                     
