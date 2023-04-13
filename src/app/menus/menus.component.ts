@@ -51,7 +51,7 @@ export class MenusComponent implements OnInit {
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       //console.log(ans);
-      this.rep_speech.splice(this.rep_speech[idx], 1);
+      this.router.navigateByUrl("#")
     });
   }
   Okej(idx : number) {
@@ -60,7 +60,7 @@ export class MenusComponent implements OnInit {
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
       //console.log(ans);
-      this.rep_speech.splice(this.rep_speech[idx], 1);
+      this.router.navigateByUrl("#")
     });
   }
 

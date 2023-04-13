@@ -29,6 +29,12 @@ export class OfertuspodgladusComponent implements OnInit {
         for (let i of this.oferty) {
           if (tmp == i.id) {
             this.selected = this.oferty[tmp -1];
+            this.edited_title = this.selected.nazwa;
+            this.edited_date = this.selected.od_kiedus;
+            this.edited_datus = this.selected.do_kiedus;
+            this.edited_localization = this.selected.location;
+            this.edited_salary = this.selected.stawka;
+            this.edited_description = this.selected.opisus;
             break;
           }
         }
@@ -206,14 +212,57 @@ export class OfertuspodgladusComponent implements OnInit {
 
 
 
-  edited_title = this.przykladus.tytulus
-  edited_date = this.przykladus.datus
-  edited_localization = this.przykladus.lokalizacjus
-  edited_salary = this.przykladus.stawkus
-  edited_description = this.przykladus.opisus
+  edited_title = "";
+  edited_date = "";
+  edited_datus = "";
+  edited_localization = "";
+  edited_salary = 0;
+  edited_description = "";
+
+  Editus_ogloszenius() {
+    let odod = new Date(this.edited_date);
+    let dodo = new Date(this.edited_datus);
+    let od_str = `${odod.getFullYear()}-${odod.getMonth() +1}-${odod.getDate()}`;
+    let do_str = `${dodo.getFullYear()}-${dodo.getMonth() +1}-${dodo.getDate()}`;
+
+    // USTAW DATE ROZPOCZĘCIA
+
+    if ((odod.getMonth() +1).toString().length < 2 && (odod.getDate()).toString().length < 2) {
+      od_str = `${odod.getFullYear()}-0${odod.getMonth() +1}-0${odod.getDate()}`;
+      
+    } else if ((odod.getMonth() +1).toString().length < 2) {
+      od_str = `${odod.getFullYear()}-0${odod.getMonth() +1}-${odod.getDate()}`;
+      
+    } else if ((odod.getDate()).toString().length < 2) {
+      od_str = `${odod.getFullYear()}-${odod.getMonth() +1}-0${odod.getDate()}`
+    }
+
+    //USTAW DATE ZAKONCZENIA
+
+    if ((dodo.getMonth() +1).toString().length < 2 && (dodo.getDate()).toString().length < 2) {
+      do_str = `${dodo.getFullYear()}-0${dodo.getMonth() +1}-0${dodo.getDate()}`;
+      
+    } else if ((dodo.getMonth() +1).toString().length < 2) {
+      do_str = `${dodo.getFullYear()}-0${dodo.getMonth() +1}-${dodo.getDate()}`;
+      
+    } else if ((dodo.getDate()).toString().length < 2) {
+      do_str = `${dodo.getFullYear()}-${dodo.getMonth() +1}-0${dodo.getDate()}`
+    }
+    console.log(do_str);
+    let query = [["nazwa", "location", "stawka"],[this.edited_title, this.edited_localization, this.edited_salary],this.selected.id];
+    console.log(JSON.stringify(query));
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      //this.router.navigateByUrl("ofertus")
+      //this.Clear_volunteer();
+    });
+  }
 
   changusEdytus(){
     this.edytus = !this.edytus
+    this.Editus_ogloszenius();
   }
 
   

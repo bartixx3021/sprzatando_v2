@@ -15,7 +15,7 @@
     <div class="mainek col-lg-8 col-xl-8 col-xxl-9 d-flex justify-content-center overflow-auto">
         <div class="leftcenter d-flex flex-column align-items-center">
             <h2 class="fs-1 bold text-center mb-5 pt-4"><span *ngIf="!edytus">{{selected.nazwa}} </span> <!-- <===== Tytuł -->
-                <span *ngIf="edytus"><input type="text" class="inpucik ps-2 py-2 fs-1 bold" placeholder="Tytuł" [(ngModel)]="edited_title"></span></h2> <!-- <===== Tytuł -->
+                <span *ngIf="edytus"><input type="text" class="inpucik ps-2 py-2 fs-1 bold" placeholder="Tytuł" [(ngModel)]="edited_title" value="{{selected.nazwa}}"></span></h2> <!-- <===== Tytuł -->
 
             <div class="imgconik d-flex align-items-center justify-content-center mw-250">
 
@@ -32,10 +32,10 @@
 
             <div class="row tw1 mt-sm-4">
                 <p class="col-12 col-sm-6 text-sm-start fs-4 mt-2 mt-sm-0"><span class="bold">Lokalizacja:</span> <span *ngIf="!edytus">{{selected.location}}</span> <!-- <===== Loklizacja -->
-                    <span *ngIf="edytus"><input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Lokalizacja" [(ngModel)]="edited_localization"></span></p> <!-- <===== Loklizacja -->
+                    <span *ngIf="edytus"><input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Lokalizacja" [(ngModel)]="edited_localization" value="{{selected.location}}"></span></p> <!-- <===== Loklizacja -->
 
                 <p class="col-12 col-sm-6 text-sm-end fs-4 mt-2 mt-sm-0"><span class="bold">Stawka:</span> <span *ngIf="!edytus">{{selected.stawka}}/h</span> <!-- <===== Stawka --> 
-                    <span *ngIf="edytus"> <input type="text" class="inpucik ps-2 fs-5 py-1" placeholder="Stawka" [(ngModel)]="edited_salary"></span></p> <!-- <===== Stawka -->
+                    <span *ngIf="edytus"> <input type="number" class="inpucik ps-2 fs-5 py-1" placeholder="Stawka" [(ngModel)]="edited_salary" value="{{selected.stawka}}"></span></p> <!-- <===== Stawka -->
 
             </div>
             <div class="opisek mt-4">
@@ -43,7 +43,7 @@
 
                 <p *ngIf="!edytus" class="fs-5 text-center my-3">{{selected.opisus}}</p> <!-- <===== Opis -->
                 <div *ngIf="edytus" class="form-floating my-3">
-                    <textarea class="form-control fs-6" placeholder="Opis" id="Opis" [(ngModel)]="edited_description"></textarea> <!-- <===== Opis -->
+                    <textarea class="form-control fs-6" placeholder="Opis" id="Opis" [(ngModel)]="edited_description">{{selected.opisus}}</textarea> <!-- <===== Opis -->
                     <label for="Opis" class="fs-5 labelek">Opis oferty</label>
                 </div>
             </div>
