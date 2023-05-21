@@ -387,10 +387,62 @@ export class MenusComponent implements OnInit {
   }
 
   showusZgloszonus = false
+  showusZbanowanus = false
+  showusListus = false;
 
-  chagnusShowus(){
-    this.showusZgloszonus = !this.showusZgloszonus
+  chagnusShowus(id: number){
+    if (id == 0) {
+      this.showusZgloszonus = !this.showusZgloszonus;
+    } else if (id == 1) {
+      this.showusZbanowanus = !this.showusZbanowanus;
+    } else if (id == 2) {
+      this.showusListus = !this.showusListus;
+    }
   }
+  Odbanuj(idx : number) {
+    let obj :any[]= [["is_blocked"], [false], this.displayed[idx].id];
+    console.log(this.displayed[idx]);
+      let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+      fetch(url).then(stream => stream.json()).then(jsonData => {
+        let ans = jsonData;
+        console.log(ans);
+        let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
+        fetch(url).then(stream => stream.json()).then(jsonData => {
+          let ans = jsonData;
+          console.log(ans);
+          this.displayed = ans.result.reverse();
+          this.Zgloszone();
+          });
+        });
+    } 
+
+    search = "nazwie użytkownika";
+    searchword = "";
+    results :any[] = [];
+    Searcher() {
+      this.results = [];
+      for (let user of this.users) {
+        if (this.search == "id") {
+          if (user.id == this.searchword) {
+            if (user.comments == "[]") {
+              user.rates = 0;
+            }
+            this.results.push(user);
+          }
+        } else {
+          if (user.name.includes(this.searchword)) {
+            if (user.comments == "[]") {
+              user.rates = 0;
+            }
+            this.results.push(user);
+          }
+        }
+      }
+      if (this.searchword == "") {
+        this.results = this.users;
+      }
+      console.log(this.results);
+    }
 
   testowyOczek = {
     img: "assets/login_bg.png",

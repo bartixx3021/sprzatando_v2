@@ -96,11 +96,17 @@
             </div>
         </div>
     </div>
-    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="selected.creator_id != ReadCookie()">
+    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="selected.creator_id != ReadCookie() && FindUser(ReadCookie()).is_admin == false">
+        <h2 class="fs-1 bold mt-4 text-center">Działania</h2>
         <button  *ngIf="selected.is_blocked == false && condition_zglos == false && selected.chosen == '-1'" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Klikus()">Zgłoś się</button>
         <button  *ngIf="selected.is_blocked == false && condition_zglos && selected.chosen == '-1'" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Klikus()">Odzgłoś się</button>
         <p *ngIf="selected.is_blocked">Ogłoszenie zbanowane</p>
         <button  *ngIf="selected.is_reported_speech == false && selected.is_blocked == false && ReadCookie() != '-1'" class="bat_r bold px-5 py-2 fs-4 mt-4 text-center" (click)="Report(selected.id)">Zreportuj</button>
+    </div>
+    <div class="addi col-lg-4 col-xl-4 col-xxl-3 d-flex flex-column align-items-center overflow-auto" *ngIf="FindUser(ReadCookie()).is_admin">
+        <h2 class="fs-1 bold mt-4 text-center">Działania</h2>
+        <button *ngIf="selected.is_blocked == false" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Banuj(0)">Banuj</button>
+        <button *ngIf="selected.is_blocked" class="bat bold px-5 py-2 fs-4 mt-4 text-center" (click)="Banuj(1)">Odbanuj</button>
     </div>
 </div>
 

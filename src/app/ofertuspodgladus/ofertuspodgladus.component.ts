@@ -294,4 +294,24 @@ export class OfertuspodgladusComponent implements OnInit {
       this.router.navigateByUrl( `ofertus/`);
     })
   }
+
+  Banuj(id : number) {
+    if (id == 0) {
+      let obj :any[]= [["is_blocked"], [true], [this.selected.id]];
+    let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      this.router.navigateByUrl( `ofertus/`);
+    })
+    } else {
+      let obj :any[]= [["is_blocked"], [false], [this.selected.id]];
+      let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+      fetch(url).then(stream => stream.json()).then(jsonData => {
+        let ans = jsonData;
+        console.log(ans);
+        this.router.navigateByUrl( `ofertus/`);
+    })
+    }
+  }
 }
