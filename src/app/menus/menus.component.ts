@@ -393,6 +393,7 @@ export class MenusComponent implements OnInit {
   showusZgloszonus = false
   showusZbanowanus = false
   showusListus = false;
+  showusRankingus = false;
 
   chagnusShowus(id: number){
     if (id == 0) {
@@ -401,6 +402,9 @@ export class MenusComponent implements OnInit {
       this.showusZbanowanus = !this.showusZbanowanus;
     } else if (id == 2) {
       this.showusListus = !this.showusListus;
+    } else if (id == 3) {
+      this.showusRankingus =  !this.showusRankingus;
+      this.Ratings();
     }
   }
   Odbanuj(idx : number) {
@@ -419,6 +423,33 @@ export class MenusComponent implements OnInit {
           });
         });
     } 
+    Ratez(user :any) {
+      let comm = JSON.parse(user.comments);
+      console.log(comm);
+      let s = 0;
+      for (let c of comm) {
+        s += c.rate;
+      }
+      return s / comm.length;
+    }
+    rates :any[] = [];
+    Ratings() {
+      for (let us of this.users) {
+          console.log(us);
+          if (us.comments != "") {
+            let comm = JSON.parse(us.comments);
+            console.log(comm);
+            let s = 0;
+            for (let c of comm) {
+              s += c.rate;
+            }
+            if (s / comm.length < 3 && s / comm.length != 0) {
+              this.rates.push(us);
+            }
+          }
+      } 
+      console.log(this.rates);
+    }
 
     search = "nazwie użytkownika";
     searchword = "";
