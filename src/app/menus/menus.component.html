@@ -282,7 +282,114 @@
 
 
             </div>
+            <!-- 
+                ===================================================================
+                                            STRONA MOJE OFERTY
+                ===================================================================
+            -->
+            <div class="col-md-12 col-lg-10 col-xxl-8" *ngIf="listastron[2]">
+                <hr>
+                <h1 class="bold text-center mt-3 mb-4">Aktywne</h1>
+                <div class="showcase oczek">
+                    <div *ngFor="let c of active; index as i">
+                        <a *ngIf="c.is_blocked == false" class="offer_card d-flex flex-column flex-md-row">
+                            <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                                <div class="img_div" style="background: url('{{c.img}}'); background-position: center; background-size: cover"></div>
+                            </div>
+                            <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                                <h2 class="bold fs-3 mt-3">{{c.nazwa}}</h2>
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <h3 class="fs-5 me-3">{{c.location}}</h3>
+                                    <h3 class="fs-5 bold">{{c.stawka}}/h</h3>
+                                </div>
+                                <div class="overflow-hidden aaa me-4">
+                                        <p class="placz m-0 fs-6">
+                                            {{c.opisus}}
+                                        </p>
+                                </div>
+                                <p class="mt-1 bok">do {{c.do_kiedus}}</p>
+                            </div>
+                            <div *ngIf="c.chosen != -1">
+                                <input type="text" [(ngModel)]="komentarz" maxlength="255" placeholder="Wystaw komentarz do oceny">{{komentarz.length}}/255  <input type="number" max="5" min="1" placeholder="Wystaw ocenę" [(ngModel)]="ocena"><button class="bat_ok px-4 py-1 fs-5 bold my-2" (click)="Rate(i)">Wystaw ocenę</button>
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+                <hr>
+                <h1 class="bold text-center mt-3 mb-4">Zakończone</h1>
+                <div class="showcase oczek">
+                    <div *ngFor="let c of finished; index as i">
+                        <a *ngIf="c.is_blocked == false" class="offer_card d-flex flex-column flex-md-row">
+                            <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                                <div class="img_div" style="background: url('{{c.img}}'); background-position: center; background-size: cover"></div>
+                            </div>
+                            <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                                <h2 class="bold fs-3 mt-3">{{c.nazwa}}</h2>
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <h3 class="fs-5 me-3">{{c.location}}</h3>
+                                    <h3 class="fs-5 bold">{{c.stawka}}/h</h3>
+                                </div>
+                                <div class="overflow-hidden aaa me-4">
+                                        <p class="placz m-0 fs-6">
+                                            {{c.opisus}}
+                                        </p>
+                                </div>
+                                <p class="mt-1 bok">do {{c.do_kiedus}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <h1 class="bold text-center mt-3 mb-4">Wygasłe</h1>
+                <div class="showcase oczek">
+                    <div *ngFor="let c of expired; index as i">
+                        <a *ngIf="c.is_blocked == false" class="offer_card d-flex flex-column flex-md-row">
+                            <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                                <div class="img_div" style="background: url('{{c.img}}'); background-position: center; background-size: cover"></div>
+                            </div>
+                            <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                                <h2 class="bold fs-3 mt-3">{{c.nazwa}}</h2>
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <h3 class="fs-5 me-3">{{c.location}}</h3>
+                                    <h3 class="fs-5 bold">{{c.stawka}}/h</h3>
+                                </div>
+                                <div class="overflow-hidden aaa me-4">
+                                        <p class="placz m-0 fs-6">
+                                            {{c.opisus}}
+                                        </p>
+                                </div>
+                                <p class="mt-1 bok">do {{c.do_kiedus}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <h1 class="bold text-center mt-3 mb-4">Zbanowane</h1>
+                <div class="showcase oczek">
+                    <div *ngFor="let c of banned; index as i">
+                        <a *ngIf="c.is_blocked == false" class="offer_card d-flex flex-column flex-md-row">
+                            <div class="card_img_container d-flex align-items-center justify-content-center mw-250">
+                                <div class="img_div" style="background: url('{{c.img}}'); background-position: center; background-size: cover"></div>
+                            </div>
+                            <div class="info_wrapper d-flex flex-column aling-items-center justify-content-center text-center text-md-start">
+                                <h2 class="bold fs-3 mt-3">{{c.nazwa}}</h2>
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <h3 class="fs-5 me-3">{{c.location}}</h3>
+                                    <h3 class="fs-5 bold">{{c.stawka}}/h</h3>
+                                </div>
+                                <div class="overflow-hidden aaa me-4">
+                                        <p class="placz m-0 fs-6">
+                                            {{c.opisus}}
+                                        </p>
+                                </div>
+                                <p class="mt-1 bok">do {{c.do_kiedus}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
+            </div>
             <!-- 
                 ===================================================================
                                             STRONA MOJE ZGŁOSZENIA

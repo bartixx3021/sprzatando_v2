@@ -25,6 +25,10 @@ export class MenusComponent implements OnInit {
       console.log(ans);
       this.displayed = ans.result.reverse();
       this.Zgloszone();
+      this.ActiveList();
+      this.ExpiredList();
+      this.BannedList();
+      this.FinishedList();
     })
     //console.log(id.replace(":", ""));
     //this.data = JSON.parse(this.ImageSorter(id.replace(":", "")));
@@ -443,6 +447,67 @@ export class MenusComponent implements OnInit {
       }
       console.log(this.results);
     }
+
+
+  active :any[] = [];
+  ActiveList() {
+    for (let element of this.displayed) {
+      if (element.is_active && element.creator_id == this.ReadCookie() && !element.is_blocked) {
+        this.active.push(element);
+      }
+    }
+  }
+  expired : any[] = [];
+  ExpiredList() {
+    for (let element of this.displayed) {
+      if (!element.is_active && element.creator_id == this.ReadCookie() && element.chosen == -1) {
+        this.expired.push(element);
+      }
+    }
+  }
+
+  finished :any[] = [];
+  FinishedList() {
+    for (let element of this.displayed) {
+      if (!element.is_active && element.creator_id == this.ReadCookie() && element.chosen != -1) {
+        this.finished.push(element);
+      }
+    }
+  }
+
+  banned :any[] = [];
+  BannedList() {
+    for (let element of this.displayed) {
+      if (element.is_active && element.creator_id == this.ReadCookie() && element.is_blocked) {
+        this.banned.push(element);
+      }
+    }
+  }
+
+
+
+  ocena = "";
+  komentarz = "";
+  Rate(i :number) {
+    let objx = this.active[i];
+    let comm = JSON.parse(this.FindUser(this.ReadCookie()).comments);
+    comm.push({rate: this.ocena, comment: this.komentarz, offer_id: objx.id});
+    console.log(comm);
+    let obj :any[]= [["comments"], [JSON.stringify(comm)], [objx.chosen]];
+    let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
+    fetch(url).then(stream => stream.json()).then(jsonData => {
+      let ans = jsonData;
+      console.log(ans);
+      let obj :any[]= [["is_active"], [false], [objx.id]];
+      let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+      fetch(url).then(stream => stream.json()).then(jsonData => {
+        let ans = jsonData;
+        console.log(ans);
+        this.finished.push(this.active[i]);
+        this.active.splice(i, 1);
+    })
+  });
+  }
 
   testowyOczek = {
     img: "assets/login_bg.png",

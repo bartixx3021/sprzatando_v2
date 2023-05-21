@@ -22,6 +22,7 @@ export class HomusComponent implements OnInit {
         }
         i++;
       }
+      this.Disactivate(x);
     })
   }
 
@@ -36,6 +37,18 @@ export class HomusComponent implements OnInit {
     return -1;
   }
 
+  Disactivate(x : any[]) {
+    for (let oferta of x) {
+      if (new Date(oferta.do_kiedus) < new Date()) {
+        let obj :any[]= [["is_active"], [false], [oferta.id]];
+        let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
+        fetch(url).then(stream => stream.json()).then(jsonData => {
+          let ans = jsonData;
+          console.log(ans);
+        });
+      }
+  }
 
+}
 
 }

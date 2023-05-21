@@ -123,21 +123,20 @@
     <div class="prof_card">
         <div class="prof_card_r text-center">
             <div class="img_prof_wrap d-flex align-items-center justify-content-center">
-                <div class="img_prof mt-4" style="background: url({{wybranus.imgus}}); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
+                <div class="img_prof mt-4" style="background: url({{wybranus.img}}); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
             </div>
-            <h2 class="bold fs-2 mt-4">{{wybranus.imienius}}</h2> <!-- <===== Imie profilu -->
+            <h2 class="bold fs-2 mt-4">{{wybranus.name}}</h2> <!-- <===== Imie profilu -->
 
-            <p class="mt-3 fs-5">Średnia gwiazdek: <span class="gwiazdki">{{wybranus.gwiazdkus}}</span></p> <!-- <===== średnia gwiazdek -->
-
-            <div class="last_zlec">
-                <h3 class="fs-5 bold mt-3">Ostatnie zlecenie:</h3>
+            <p class="mt-3 fs-5">Średnia gwiazdek: <span class="gwiazdki">{{wybranus.rate}}</span></p> <!-- <===== średnia gwiazdek -->
+            <h3 class="fs-5 bold mt-3">Ostatnie zlecenia:</h3>
+            <div class="last_zlec" *ngFor="let z of ostatniuszlecenius; index as j">
                 <div class="d-flex zlec_wrapper mt-4">
                     <div class="last_zlec_img_wrap d-flex align-items-center ms-4 justify-content-center">
-                        <div class="img_last_zlec" style="background: url('assets/login_bg.png'); background-position: center; background-size: cover"></div>
+                        <div class="img_last_zlec" style="background: url({{z.img}}); background-position: center; background-size: cover"></div>
                     </div>
                     <div class="row dzialaj mx-2 mb-1">
-                        <p class="fs-5 bold col-12 text-start">Tytuł zlecenia</p> <!-- <===== Tytuł ostatniego zlecenia -->
-                        <p class="opis_zlecenia fs-6 col-12 text-start">Jest troche szurnięty HHAHAHHAHAHAHA lolol xddd</p><!-- <===== Opis ostatniego zlecenia -->
+                        <p class="fs-5 bold col-12 text-start">{{z.name}}</p> <!-- <===== Tytuł ostatniego zlecenia -->
+                        <p class="opis_zlecenia fs-6 col-12 text-start">{{commus[j].comment}}</p><!-- <===== Opis ostatniego zlecenia -->
                     </div>
                 </div>
             </div>

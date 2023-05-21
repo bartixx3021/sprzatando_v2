@@ -277,7 +277,24 @@ export class OfertuspodgladusComponent implements OnInit {
   showProfilus(index:number){
     console.log(index)
     this.isWybranus = true
-    this.wybranus = this.arrajus[index]
+    this.wybranus = this.vols[index];
+    this.Ratus();
+    console.log(this.ostatniuszlecenius);
+  }
+  ostatniuszlecenius :any[] = [];
+  commus :any[]  = [];
+  Ratus() {
+    this.ostatniuszlecenius = [];
+    let comm = JSON.parse(this.wybranus.comments);
+    console.log(comm);
+    let s = 0;
+    for (let c of comm) {
+      this.ostatniuszlecenius.push(this.oferty[c.offer_id - 1]);
+      s += c.rate;
+    }
+    this.wybranus.rate = s / comm.length;
+    this.commus = comm;
+    this.ostatniuszlecenius.reverse();
   }
 
   closeProfilus(){
@@ -314,4 +331,6 @@ export class OfertuspodgladusComponent implements OnInit {
     })
     }
   }
+
+
 }
