@@ -1,0 +1,54 @@
+<div>
+    <h1 class="bold text-center mt-4 pb-2">Ranking wykonawców</h1>
+
+    <div class="mt-5"></div>
+
+    <div *ngFor="let l of leaderboard; index as i" class="c_bot m-0 p-0 row">
+
+        <div class="col-0 col-md-1 col-xl-2 m-0 p-0"></div>
+
+        <div class="col-12 col-md-10 col-xl-8 l_board m-0 p-0 mt-2">
+
+            <a href="" class="kolorek">
+                <div class="l_card d-flex align-items-center justify-content-center py-4 my-2 flex-column flex-md-row">
+                    <h2 class="fs-2 col-12 col-md-1 text-center">{{i+1}}</h2>
+                    <div class="col-12 col-md-3 img_prof_wrap d-flex align-items-center justify-content-center">
+                        <div class="img_prof" style="background: url({{l.pfp}}); background-position: center; background-size: cover"></div> <!-- <===== Zdjęcie profilu -->
+                    </div>
+                    <div class="col-12 col-md-6 text-center">
+                        <h2 class="fs-2 bold">{{l.name}}</h2>
+                    </div>
+                    <div class="col-12 col-md-2 text-center d-flex starr justify-content-center align-items-center">
+                        <h2 class="fs-2 pe-1 te">{{l.average}}</h2>
+                        <div class="star_c">
+                            <img class="star pb-1" src="assets/RatingStar.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </a>    
+
+        <div class="col-0 col-md-1 col-xl-2 m-0 p-0"></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- <a href="" class="kolorek">
+    <div class="l_card d-flex align-items-center justify-content-center py-4 my-2">
+        <h2 class="fs-2 col-1 text-center">1</h2>
+        <div class="col-3 img_prof_wrap d-flex align-items-center justify-content-center">
+            <div class="img_prof" style="background: url(assets/login_bg.png); background-position: center; background-size: cover"></div>
+        </div>
+        <div class="col-6 text-center">
+            <h2 class="fs-2 bold">Gregory Knock'ass</h2>
+        </div>
+        <div class="col-2 text-center d-flex starr justify-content-center align-items-center">
+            <h2 class="fs-2 pe-1 te">4.32</h2>
+            <div class="star_c">
+                <img class="star pb-1" src="assets/RatingStar.png" alt="">
+            </div>
+        </div>
+    </div>
+</a>   -->
