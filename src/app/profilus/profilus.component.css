@@ -1,0 +1,32 @@
+.bold{
+    font-weight: bold;
+}
+.img_prof {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+
+.star{
+    width: 80%;
+    height: 80%;
+}
+
+.star2{
+    width: 55%;
+    height: 55%;
+}
+
+.img_kom {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+}
+
+.komentarz{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.kom_c{
+    /* height: 100vh; */
+}
