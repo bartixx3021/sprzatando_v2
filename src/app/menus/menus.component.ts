@@ -532,7 +532,7 @@ export class MenusComponent implements OnInit {
   komentarz = "";
   Rate(i :number) {
     let objx = this.active[i];
-    let comm = JSON.parse(this.FindUser(this.ReadCookie()).comments);
+    let comm = JSON.parse(this.FindUser(objx.chosen).comments);
     comm.push({rate: this.ocena, comment: this.komentarz, offer_id: objx.id});
     console.log(comm);
     let obj :any[]= [["comments"], [JSON.stringify(comm)], [objx.chosen]];
