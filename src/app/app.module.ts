@@ -12,6 +12,7 @@ import { TestusComponent } from './testus/testus.component';
 import { MenusComponent } from './menus/menus.component';
 import { OfertuspodgladusComponent } from './ofertuspodgladus/ofertuspodgladus.component';
 import { RankingusComponent } from './rankingus/rankingus.component';
+import { ProfilusComponent } from './profilus/profilus.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RankingusComponent } from './rankingus/rankingus.component';
     TestusComponent,
     MenusComponent,
     OfertuspodgladusComponent,
-    RankingusComponent
+    RankingusComponent,
+    ProfilusComponent
   ],
   imports: [
     BrowserModule,
