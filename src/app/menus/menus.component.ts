@@ -435,20 +435,31 @@ export class MenusComponent implements OnInit {
     rates :any[] = [];
     Ratings() {
       for (let us of this.users) {
-          console.log(us);
+          //console.log(us);
           if (us.comments != "") {
             let comm = JSON.parse(us.comments);
-            console.log(comm);
+            console.log(us);
             let s = 0;
             for (let c of comm) {
               s += c.rate;
             }
-            if (s / comm.length < 3 && s / comm.length != 0) {
+            us.rate = s / comm.length;
+            us.offer_ct = comm.length;
+            if (us.rate < 3 && us.rate != 0) {
               this.rates.push(us);
             }
           }
       } 
       console.log(this.rates);
+    }
+
+    Banuj(idx :number) {
+      let obj :any[]= [["is_blocked"], [true], [idx]];
+      let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
+      fetch(url).then(stream => stream.json()).then(jsonData => {
+        let ans = jsonData;
+        console.log(ans);
+    })
     }
 
     search = "nazwie użytkownika";
