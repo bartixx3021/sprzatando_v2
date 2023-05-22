@@ -454,11 +454,21 @@ export class MenusComponent implements OnInit {
     }
 
     Banuj(idx :number) {
-      let obj :any[]= [["is_blocked"], [true], [idx]];
+      let obj :any[]= [["is_blocked"], [true], [this.rates[idx].id]];
       let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
         console.log(ans);
+        let d = new Date();
+        let banned = d.setDate(d.getDate() + 14);
+        /*
+        let obj2 :any[]= [["how_long"], [banned], [this.rates[idx].id]];
+        let url2 = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj2);
+        fetch(url2).then(stream => stream.json()).then(jsonData => {
+          let ans = jsonData;
+          console.log(ans);
+        });
+        */
     })
     }
 
