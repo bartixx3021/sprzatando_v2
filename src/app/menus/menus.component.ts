@@ -460,15 +460,16 @@ export class MenusComponent implements OnInit {
         let ans = jsonData;
         console.log(ans);
         let d = new Date();
-        let banned = d.setDate(d.getDate() + 14);
-        /*
-        let obj2 :any[]= [["how_long"], [banned], [this.rates[idx].id]];
+        let futureDate = new Date(d.getTime() + (14 * 24 * 60 * 60 * 1000));
+        let out = `${futureDate.getFullYear()}-${futureDate.getMonth() + 1}-${futureDate.getDate()}`
+        let obj2 :any[]= [["how_long"], [out], [this.rates[idx].id]];
         let url2 = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj2);
         fetch(url2).then(stream => stream.json()).then(jsonData => {
           let ans = jsonData;
           console.log(ans);
+          this.rates.splice(idx, 1);
         });
-        */
+        
     })
     }
 
@@ -480,15 +481,33 @@ export class MenusComponent implements OnInit {
       for (let user of this.users) {
         if (this.search == "id") {
           if (user.id == this.searchword) {
-            if (user.comments == "[]") {
-              user.rates = 0;
+            if (user.comments == "[]" || user.comments == "") {
+              user.rate = 0;
+            } else {
+              let comm = JSON.parse(user.comments);
+              //console.log(user);
+              let s = 0;
+              for (let c of comm) {
+                s += c.rate;
+              }
+              user.rate = s / comm.length;
+              user.offer_ct = comm.length;
             }
             this.results.push(user);
           }
         } else {
           if (user.name.includes(this.searchword)) {
-            if (user.comments == "[]") {
-              user.rates = 0;
+            if (user.comments == "[]" || user.comments == "") {
+              user.rate = 0;
+            } else {
+              let comm = JSON.parse(user.comments);
+              //console.log(user);
+              let s = 0;
+              for (let c of comm) {
+                s += c.rate;
+              }
+              user.rate = s / comm.length;
+              user.offer_ct = comm.length;
             }
             this.results.push(user);
           }
@@ -559,6 +578,13 @@ export class MenusComponent implements OnInit {
         this.active.splice(i, 1);
     })
   });
+  }
+
+
+  Goto(i : number) {
+    let x = this.active[i];
+    let obj = JSON.stringify({nr :x.id})
+    this.router.navigateByUrl(`ofertuspodgladus/:${obj}`);
   }
 
   testowyOczek = {
