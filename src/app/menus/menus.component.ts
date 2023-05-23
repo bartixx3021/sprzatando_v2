@@ -434,6 +434,7 @@ export class MenusComponent implements OnInit {
     }
     rates :any[] = [];
     Ratings() {
+      this.rates = [];
       for (let us of this.users) {
           //console.log(us);
           if (us.comments != "") {
