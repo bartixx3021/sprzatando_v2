@@ -39,12 +39,12 @@ export class OfertusComponent implements OnInit {
   SetFilters() {
     for (let x = 0; x < this.oferty.length; x++) {
       let m  = String(this.oferty[x].location);
-      if (!this.miasta.includes(m)) {
+      if (!this.miasta.includes(m) && this.oferty[x].is_active && m != "") {
         this.miasta.push(m);
       }
       let t = JSON.parse(this.oferty[x].typus);
       for (let typ of t) {
-        if (!this.typusy.includes(typ)) {
+        if (!this.typusy.includes(typ) && this.oferty[x].is_active) {
           this.typusy.push(typ);
         }
       }
