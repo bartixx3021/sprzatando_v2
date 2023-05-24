@@ -32,7 +32,7 @@ export class OfertusComponent implements OnInit {
     
   }
   Goto(i : number) {
-    let x = this.oferty[i];
+    let x = this.displayed[i];
     let obj = JSON.stringify({nr :x.id})
     this.router.navigateByUrl(`ofertuspodgladus/:${obj}`);
   }
