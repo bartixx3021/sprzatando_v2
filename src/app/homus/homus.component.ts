@@ -13,7 +13,6 @@ export class HomusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       let x = ans.result.reverse();
       let i = 0;
       while (this.oferty.length < 10 && i < x.length) {
@@ -44,7 +43,6 @@ export class HomusComponent implements OnInit {
         let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
         fetch(url).then(stream => stream.json()).then(jsonData => {
           let ans = jsonData;
-          console.log(ans);
         });
       }
   }
