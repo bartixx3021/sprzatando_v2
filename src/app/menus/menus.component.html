@@ -549,7 +549,8 @@
                                             <th>NAZWA UŻYTKOWNIKA</th>
                                             <th>EMAIL</th>
                                             <th>OCENY</th>
-                                            <th>Ile zleceń</th>
+                                            <th>Ile wykonanych</th>
+                                            <th>Ile stworzonych</th>
                                             <th>OD KIEDY</th>
                                         </tr>
                                         <tr *ngFor="let user of results">
@@ -558,6 +559,7 @@
                                             <td>{{user.email}}</td>
                                             <td>{{user.rate}}</td>
                                             <td>{{user.offer_ct}}</td>
+                                            <td>{{user.stworz}}</td>
                                             <td>{{user.created}}</td>
                                         </tr>
                                     </table>

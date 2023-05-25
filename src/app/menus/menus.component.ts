@@ -27,6 +27,7 @@ export class MenusComponent implements OnInit {
       this.ExpiredList();
       this.BannedList();
       this.FinishedList();
+      this.CreateRate();
     })
     this.GetUsers();
   }
@@ -392,6 +393,18 @@ export class MenusComponent implements OnInit {
       return s / comm.length;
     }
     rates :any[] = [];
+    CreateRate() {
+      for (let ofer of this.displayed) {
+        let user = this.FindUser(ofer.creator_id);
+        console.log(user);
+        if (user.stworz == undefined) {
+          user.stworz = 1;
+        } else {
+          user.stworz++;
+        }
+      } 
+    }
+
     Ratings() {
       this.rates = [];
       for (let us of this.users) {
@@ -407,8 +420,11 @@ export class MenusComponent implements OnInit {
             if (us.rate < 3 && us.rate != 0) {
               this.rates.push(us);
             }
+          } else {
+            us.offer_ct = "-";
           }
-      } 
+      }
+      this.CreateRate(); 
     }
 
     Banuj(idx :number) {
@@ -435,10 +451,12 @@ export class MenusComponent implements OnInit {
     Searcher() {
       this.results = [];
       for (let user of this.users) {
+        user.stworz = 0;
         if (this.search == "id") {
           if (user.id == this.searchword) {
             if (user.comments == "[]" || user.comments == "") {
               user.rate = 0;
+              user.offer_ct = 0;
             } else {
               let comm = JSON.parse(user.comments);
               let s = 0;
@@ -454,6 +472,7 @@ export class MenusComponent implements OnInit {
           if (user.name.includes(this.searchword)) {
             if (user.comments == "[]" || user.comments == "") {
               user.rate = 0;
+              user.offer_ct = 0;
             } else {
               let comm = JSON.parse(user.comments);
               let s = 0;
@@ -470,6 +489,7 @@ export class MenusComponent implements OnInit {
       if (this.searchword == "") {
         this.results = this.users;
       }
+      this.CreateRate();
     }
 
 
