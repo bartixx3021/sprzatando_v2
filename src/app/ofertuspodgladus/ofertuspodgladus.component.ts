@@ -19,13 +19,10 @@ export class OfertuspodgladusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.oferty = ans.result;
-      console.log(this.oferty);
       this.route.paramMap.subscribe(params => {
         let id :any = params.get("idus");
         let tmp = JSON.parse(id.replace(id[0], "")).nr;
-        //console.log(tmp);
         for (let i of this.oferty) {
           if (tmp == i.id) {
             this.selected = this.oferty[tmp -1];
@@ -39,7 +36,6 @@ export class OfertuspodgladusComponent implements OnInit {
             break;
           }
         }
-        console.log(this.selected);
       });
       this.Checkus();
       if (this.ReadCookie() == this.selected.creator_id) {
@@ -69,14 +65,12 @@ export class OfertuspodgladusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=user&subact=select&security=ezzz&parametry=" + JSON.stringify({message: "ok"});
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      //console.log(ans);
       this.users = ans.result;
     })
   }
   FindUser(mail : string) {
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].id == Number(mail)) {
-        console.log(this.users[i]);
         return this.users[i];
       }
     }
@@ -84,7 +78,6 @@ export class OfertuspodgladusComponent implements OnInit {
   condition_zglos = false;
   Klikus() {
     if (this.val) {
-      console.log("Zgłosił się");
       let lista = JSON.parse(this.selected.volunteer);
       let user_id = this.ReadCookie();
       if (!this.condition_zglos) {
@@ -93,12 +86,10 @@ export class OfertuspodgladusComponent implements OnInit {
         lista.splice(lista.indexOf(user_id), 1);
       }
       let query = [["volunteer"],[JSON.stringify(lista)],this.selected.id];
-      console.log(JSON.stringify(query));
       
       let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
-        console.log(ans);
         this.GetOffer();
         this.Checkus();
         this.router.navigateByUrl("/ofertus")
@@ -115,29 +106,24 @@ export class OfertuspodgladusComponent implements OnInit {
     for (let element of tmp) {
       this.vols.push(this.FindUser(element));
     }
-    console.log(this.vols);
   }
   Clear_volunteer() {
     let lista :any[] = [];
     let query = [["volunteer"],[JSON.stringify(lista)],this.selected.id];
-    console.log(JSON.stringify(query));
     
     let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.router.navigateByUrl("/ofertus");
     });
   }
 
   Choose(idx : number) {
     let query = [["chosen"],[idx],this.selected.id];
-    console.log(JSON.stringify(query));
     
     let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.Clear_volunteer();
     });
   }
@@ -146,20 +132,16 @@ export class OfertuspodgladusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.oferty = ans.result;
-      console.log(this.oferty);
       this.route.paramMap.subscribe(params => {
         let id :any = params.get("idus");
         let tmp = JSON.parse(id.replace(id[0], "")).nr;
-        //console.log(tmp);
         for (let i of this.oferty) {
           if (tmp == i.id) {
             this.selected = this.oferty[tmp -1];
             break;
           }
         }
-        console.log(this.selected);
       });
     })
   }
@@ -250,13 +232,10 @@ export class OfertuspodgladusComponent implements OnInit {
     } else if ((dodo.getDate()).toString().length < 2) {
       do_str = `${dodo.getFullYear()}-${dodo.getMonth() +1}-0${dodo.getDate()}`
     }
-    console.log(do_str);
     let query = [["nazwa", "location", "stawka", "opisus", "od_kiedus", "do_kiedus", "img"],[this.edited_title, this.edited_localization, this.edited_salary, this.edited_description, od_str, do_str, this.edited_url],this.selected.id];
-    console.log(JSON.stringify(query));
     let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(query);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       //this.router.navigateByUrl("ofertus")
       //this.Clear_volunteer();
     });
@@ -275,18 +254,15 @@ export class OfertuspodgladusComponent implements OnInit {
 
 
   showProfilus(index:number){
-    console.log(index)
     this.isWybranus = true
     this.wybranus = this.vols[index];
     this.Ratus();
-    console.log(this.ostatniuszlecenius);
   }
   ostatniuszlecenius :any[] = [];
   commus :any[]  = [];
   Ratus() {
     this.ostatniuszlecenius = [];
     let comm = JSON.parse(this.wybranus.comments);
-    console.log(comm);
     let s = 0;
     for (let c of comm) {
       this.ostatniuszlecenius.push(this.oferty[c.offer_id - 1]);
@@ -307,7 +283,6 @@ export class OfertuspodgladusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.router.navigateByUrl( `ofertus/`);
     })
   }
@@ -318,7 +293,6 @@ export class OfertuspodgladusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.router.navigateByUrl( `ofertus/`);
     })
     } else {
@@ -326,7 +300,6 @@ export class OfertuspodgladusComponent implements OnInit {
       let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
-        console.log(ans);
         this.router.navigateByUrl( `ofertus/`);
     })
     }

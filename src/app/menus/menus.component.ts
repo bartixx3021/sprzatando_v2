@@ -408,7 +408,6 @@ export class MenusComponent implements OnInit {
             }
           }
       } 
-      console.log(this.rates);
     }
 
     Banuj(idx :number) {
@@ -416,7 +415,6 @@ export class MenusComponent implements OnInit {
       let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
-        console.log(ans);
         let d = new Date();
         let futureDate = new Date(d.getTime() + (14 * 24 * 60 * 60 * 1000));
         let out = `${futureDate.getFullYear()}-${futureDate.getMonth() + 1}-${futureDate.getDate()}`
@@ -424,7 +422,6 @@ export class MenusComponent implements OnInit {
         let url2 = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj2);
         fetch(url2).then(stream => stream.json()).then(jsonData => {
           let ans = jsonData;
-          console.log(ans);
           this.rates.splice(idx, 1);
         });
         
@@ -443,7 +440,6 @@ export class MenusComponent implements OnInit {
               user.rate = 0;
             } else {
               let comm = JSON.parse(user.comments);
-              //console.log(user);
               let s = 0;
               for (let c of comm) {
                 s += c.rate;
@@ -459,7 +455,6 @@ export class MenusComponent implements OnInit {
               user.rate = 0;
             } else {
               let comm = JSON.parse(user.comments);
-              //console.log(user);
               let s = 0;
               for (let c of comm) {
                 s += c.rate;
@@ -474,7 +469,6 @@ export class MenusComponent implements OnInit {
       if (this.searchword == "") {
         this.results = this.users;
       }
-      console.log(this.results);
     }
 
 
@@ -521,17 +515,14 @@ export class MenusComponent implements OnInit {
     let objx = this.active[i];
     let comm = JSON.parse(this.FindUser(objx.chosen).comments);
     comm.push({rate: this.ocena, comment: this.komentarz, offer_id: objx.id});
-    console.log(comm);
     let obj :any[]= [["comments"], [JSON.stringify(comm)], [objx.chosen]];
     let url = "http://130.162.234.221:8080?action=user&subact=modify&security=ezzz&parametry=" + JSON.stringify(obj);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       let obj :any[]= [["is_active"], [false], [objx.id]];
       let url = "http://130.162.234.221:8080?action=offer&subact=edit&security=ezzz&parametry=" + JSON.stringify(obj);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
-        console.log(ans);
         this.finished.push(this.active[i]);
         this.active.splice(i, 1);
     })

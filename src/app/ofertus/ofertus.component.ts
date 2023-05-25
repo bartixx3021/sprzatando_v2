@@ -21,7 +21,6 @@ export class OfertusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=offer&subact=select&security=ezzz";
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       this.oferty = ans.result.reverse();
       for (let i = 0; i < this.oferty.length; i++) {
 

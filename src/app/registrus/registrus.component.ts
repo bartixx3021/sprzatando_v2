@@ -97,7 +97,6 @@ export class RegistrusComponent implements OnInit {
       let url = "http://130.162.234.221:8080?action=user&subact=add&security=ezzz&parametry=" + JSON.stringify(obj);
       fetch(url).then(stream => stream.json()).then(jsonData => {
         let ans = jsonData;
-        //console.log(ans);
         this.Redirect();
       })
     }
@@ -108,12 +107,9 @@ export class RegistrusComponent implements OnInit {
     let url = "http://130.162.234.221:8080?action=user&subact=get&security=ezzz&parametry=" + JSON.stringify(obj);
     fetch(url).then(stream => stream.json()).then(jsonData => {
       let ans = jsonData;
-      console.log(ans);
       if (ans.result.length > 0) {
         let x = ans.result[0];
-        console.log(x);
         let ob = {id : x.id, name: x.name};
-        console.log(JSON.stringify(ob));
         document.cookie = `logged=${x.id}`;
         this.router.navigateByUrl( `menus`);
       }
