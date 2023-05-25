@@ -395,6 +395,7 @@ export class MenusComponent implements OnInit {
     Ratings() {
       this.rates = [];
       for (let us of this.users) {
+          us.offer_ct = 0;
           if (us.comments != "") {
             let comm = JSON.parse(us.comments);
             let s = 0;
